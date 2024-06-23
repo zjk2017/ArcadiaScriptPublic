@@ -5,8 +5,8 @@
 一天至少三次
 fix 20240623 ArcadiaScriptPublic 原作者不知道了 增加关注功能 变量yingshengid1=用户id1 yingshengid2=用户id2 yingshengid3=用户id3
 */
-const jsname = '硬声'
-const $ = new Env(jsname);
+
+const $ = new Env('硬声');
 
 var CryptoJS = require("crypto-js");
 
