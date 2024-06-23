@@ -5,7 +5,10 @@ https://t.me/ArcadiaScript
 
 群组
 https://t.me/ArcadiaScriptPublic
-<a href="http://s11.flagcounter.com/more/JxD"><img src="https://s11.flagcounter.com/count2/JxD/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_10/viewers_0/labels_0/pageviews_0/flags_0/percent_0/" alt="Flag Counter" border="0"></a>
+
+访问统计
+
+<a href="https://info.flagcounter.com/ZNjl"><img src="https://s11.flagcounter.com/map/ZNjl/size_m/txt_000000/border_CCCCCC/pageviews_1/viewers_3/flags_0/" alt="Flag Counter" border="0"></a>
 
 这里的脚本只是自己学习 js/py/sh 的一个实践 仅用于测试和学习研究，禁止用于商业用途，不能保证其合法性，准确性，完整性和有效性，请根据情况自行判断.
 
