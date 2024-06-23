@@ -1,3 +1,4 @@
+//原作者文中有， ArcadiaScriptPublic 更新青龙抓的参数 hgds-crm.myaiwecom.com里面 [{"token": "Bearer ey.......","unionid": "xxx","sessionKey": "sessionKey是 X-Hg-Req-Sign-Nonce的==前边加上==","socialhubId ": "xxx","id": "随便写"}]
 const $ = new Env('哈根达斯')
 let sessionKey = '', unionid = '',socialhubId = '', token = ''
 const HGDS = ($.isNode() ? JSON.parse(process.env.HGDS) : $.getjson("HGDS")) || [];
