@@ -9,7 +9,7 @@ https://t.me/ArcadiaScriptPublic
 访问统计
 
 
-<img src="https://visitor-badge.glitch.me/badge?page_id=zjk2017_ArcadiaScriptPublic" alt="visitor">
+![](https://komarev.com/ghpvc/?username=zjk2017)
 
 
 <a href="https://info.flagcounter.com/ZNjl"><img src="https://s11.flagcounter.com/map/ZNjl/size_m/txt_000000/border_CCCCCC/pageviews_1/viewers_3/flags_0/" alt="Flag Counter" border="0"></a>
