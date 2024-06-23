@@ -169,8 +169,10 @@ if __name__ == "__main__":
               res += watchad(cookie)
               time.sleep(35)
             t=getmoney(cookie)
-            print("30天内满1元提现：")
-            withdraw(cookie)
-            print(t)
+            print(f"余额:{t}")
+            if t>=1:
+                print("30天内满1元提现：")
+                withdraw(cookie)
+            
     # if send:
     #     send("云筑工匠任务通知", res)
