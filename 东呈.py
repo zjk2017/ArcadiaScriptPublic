@@ -1,6 +1,6 @@
 """
 cron: 30 7 * * * 东呈.py
-new Env("微信小程序-东呈酒店")
+new Env("东呈酒店")
 
 ArcadiaScriptPublic 频道：https://t.me/ArcadiaScript 群组：https://t.me/ArcadiaScriptPublic
 三个变量 dcjd_token  dcjd_DOSSENSESSIONID dcjd_blackbox
