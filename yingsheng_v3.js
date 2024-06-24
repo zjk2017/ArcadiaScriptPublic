@@ -3,10 +3,11 @@
 注册登录之后，设置密码，把手机密码填到yingshengAccount里
 多账户换行或者@隔开，格式：account=13888888888&password=xxxxxxxx
 一天至少三次
-fix 20240623 ArcadiaScriptPublic 原作者不知道了 增加关注功能 变量yingshengid1=用户id1 yingshengid2=用户id2 yingshengid3=用户id3
+fix 20240623 ArcadiaScriptPublic ArcadiaScriptPublic 频道：https://t.me/ArcadiaScript 群组：https://t.me/ArcadiaScriptPublic
+原作者不知道了 增加关注功能 变量yingshengid1=用户id1 yingshengid2=用户id2 yingshengid3=用户id3
 */
-
-const $ = new Env('硬声');
+const jsname = '硬声'
+const $ = new Env(jsname);
 
 var CryptoJS = require("crypto-js");
 
@@ -173,7 +174,7 @@ class UserInfo {
             await httpRequest('get',urlObject)
             let result = httpResult;
             if(!result) return
-            console.log(result)
+            // console.log(result) 
             if(result.code==0) {
                 await $.wait(TASK_WAIT_TIME);
                 await this.recommendList();
@@ -206,7 +207,7 @@ class UserInfo {
                                 await this.receiveCoin(task);
                             } else if(step.com_status != 13) {
                                 let num = step.condition<25 ? (step.condition - step.finish_progress) : 1
-                                console.log("num="+num)
+                                // console.log("num="+num)
 
                                 let getReward = true;
                                 for(let i=0; i<num; i++) {
@@ -368,7 +369,7 @@ class UserInfo {
             await httpRequest('get',urlObject)
             let result = httpResult;
             if(!result) return
-            console.log("获取推荐列表="+result)
+            // console.log("获取推荐列表="+result)
             if(result.code==0) {
                 // for(let item of result.data.data) {
                 //     this.userIdList.push(item.user_id)
