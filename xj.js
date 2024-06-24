@@ -1,12 +1,14 @@
 /*
+ArcadiaScriptPublic 频道：https://t.me/ArcadiaScript 群组：https://t.me/ArcadiaScriptPublic
 微信小程序：习酒会员俱乐部
-原作者文中有， ArcadiaScriptPublic 更新青龙抓的参数 
+更新青龙抓的参数 
 变量为XiJiu
 抓包域名 xcx.exijiu.com token
 
 比如 
 [{"token": "ey...","id": "备注随便写"}]
 
+原作者：@xzxxn777\n频道：https://t.me/xzxxn777\n群组：https://t.me/xzxxn7777\n自用机场推荐：https://xn--diqv0fut7b.com\n
 */
 
 const $ = new Env('习酒');
@@ -23,7 +25,7 @@ let notice = '';
 })().catch((e) => {$.log(e)}).finally(() => {$.done({});});
 
 async function main() {
-    console.log('作者：@xzxxn777\n频道：https://t.me/xzxxn777\n群组：https://t.me/xzxxn7777\n自用机场推荐：https://xn--diqv0fut7b.com\n')
+    
     for (const item of XiJiu) {
         id = item.id;
         token = item.token;
@@ -40,241 +42,241 @@ async function main() {
         console.log(sign.msg)
         //农场
         //每日验证
-        console.log("————————————")
-        console.log("开始每日验证")
-        let getValidateInfo = await commonGet(`/garden/slide_validate/getValidateInfo`);
-        if (getValidateInfo.data.status == 1) {
-            let gap = getValidateInfo.data.datas[1].split(",")[1];
-            let bg = getValidateInfo.data.datas[0].split(",")[1];
-            let getXpos = await slidePost('huakuai.xzxxn7.live',{'gap': gap, 'bg': bg})
-            if (!getXpos) {
-                getXpos = await slidePost('107.22.24.202:9999',{'gap': getValidateInfo.data.datas[1], 'bg': getValidateInfo.data.datas[0]})
-                if (!getXpos) {
-                    console.log("滑块验证服务不在运行，请联系作者")
-                    $.msg($.name, `滑块验证服务不在运行，请联系作者`);
-                }
-            }
-            console.log(getXpos)
-            let toValidate = await commonPost(`/garden/slide_validate/toValidate`,JSON.stringify({"coordinate":getXpos.x_coordinate}));
-            console.log(toValidate.msg)
-        } else {
-            console.log(getValidateInfo.msg)
-        }
-        //每日签到
-        console.log("————————————")
-        console.log("开始每日签到")
-        let dailySign = await commonPost("/garden/sign/dailySign",JSON.stringify({}));
-        if (dailySign.data.isTodayFirstSign) {
-            console.log(dailySign.data.tips)
-        } else {
-            console.log('今日已签到')
-        }
-        //种植
-        console.log("————————————")
-        console.log("开始种植")
-        let getMemberInfo = await commonGet("/garden/Gardenmemberinfo/getMemberInfo");
-        console.log(`拥有：高粱*${getMemberInfo.data.sorghum} 小麦*${getMemberInfo.data.wheat} 酒曲*${getMemberInfo.data.wine_yeast} 酒*${getMemberInfo.data.wine} 水*${getMemberInfo.data.water} 肥料*${getMemberInfo.data.manure}`)
-        let lands = await commonGet("/garden/sorghum/index");
-        let unLock = true
-        for (let land of lands.data) {
-            if (land.status == -1) {
-                console.log(`第${land.serial_number}块地：未解锁`)
-                //解锁
-                if (unLock) {
-                    console.log(`开始解锁土地`)
-                    let extend = await commonPost(`/garden/sorghum/extend`,JSON.stringify({"serial_number":land.serial_number}))
-                    if (extend.err == 0) {
-                        console.log(extend.msg)
-                        //种植
-                        console.log(`开始种植`)
-                        getMemberInfo = await commonGet("/garden/Gardenmemberinfo/getMemberInfo");
-                        if (getMemberInfo.data.wine_yeast > 0) {
-                            //高粱
-                            let seed = await commonPost(`/garden/sorghum/seed`,JSON.stringify({"id":land.id,"type":1}))
-                            if (seed.err == 61010) {
-                                $.msg($.name, `用户：${id}`, seed.msg);
-                            }
-                            console.log(seed.msg)
-                        } else {
-                            //小麦
-                            let seed = await commonPost(`/garden/sorghum/seed`,JSON.stringify({"id":land.id,"type":2}))
-                            if (seed.err == 61010) {
-                                $.msg($.name, `用户：${id}`, seed.msg);
-                            }
-                            console.log(seed.msg)
-                        }
-                    } else {
-                        console.log(extend.msg)
-                        unLock = false
-                    }
-                }
-            } else {
-                console.log(`第${land.serial_number}块地：已解锁`)
-                let name = cropType.find(item => land.type in item)[land.type];
-                console.log(`种植：${name}*${land.volumn} 收获时间：${land.crop_time}`)
-                if (land.status == 0) {
-                    console.log(`${name}已收获，未种植`)
-                    console.log(`开始种植`)
-                    getMemberInfo = await commonGet("/garden/Gardenmemberinfo/getMemberInfo");
-                    if (getMemberInfo.data.wine_yeast > 0) {
-                        //高粱
-                        let seed = await commonPost(`/garden/sorghum/seed`,JSON.stringify({"id":land.id,"type":1}))
-                        if (seed.err == 61010) {
-                            $.msg($.name, `用户：${id}`, seed.msg);
-                        }
-                        console.log(seed.msg)
-                    } else {
-                        //小麦
-                        let seed = await commonPost(`/garden/sorghum/seed`,JSON.stringify({"id":land.id,"type":2}))
-                        if (seed.err == 61010) {
-                            $.msg($.name, `用户：${id}`, seed.msg);
-                        }
-                        console.log(seed.msg)
-                    }
-                } else if (land.status == 2) {
-                    console.log(`${name}已成熟，开始收获`)
-                    let harvest = await commonPost(`/garden/sorghum/harvest`,JSON.stringify({"id":land.id}));
-                    console.log(harvest.msg)
-                    console.log(`开始种植`)
-                    getMemberInfo = await commonGet("/garden/Gardenmemberinfo/getMemberInfo");
-                    if (getMemberInfo.data.wine_yeast > 0) {
-                        //高粱
-                        let seed = await commonPost(`/garden/sorghum/seed`,JSON.stringify({"id":land.id,"type":1}))
-                        if (seed.err == 61010) {
-                            $.msg($.name, `用户：${id}`, seed.msg);
-                        }
-                        console.log(seed.msg)
-                    } else {
-                        //小麦
-                        let seed = await commonPost(`/garden/sorghum/seed`,JSON.stringify({"id":land.id,"type":2}))
-                        if (seed.err == 61010) {
-                            $.msg($.name, `用户：${id}`, seed.msg);
-                        }
-                        console.log(seed.msg)
-                    }
-                } else {
-                    let code = 0
-                    while (code == 0) {
-                        let watering = await commonPost(`/garden/sorghum/watering`,JSON.stringify({"id":land.id}));
-                        console.log(watering.msg)
-                        code = watering.err
-                    }
-                    code = 0
-                    while (code == 0) {
-                        let manuring = await commonPost(`/garden/sorghum/manuring`,JSON.stringify({"id":land.id}));
-                        console.log(manuring.msg)
-                        code = manuring.err
-                    }
-                }
-                lands = await commonGet("/garden/sorghum/index");
-                const i = lands.data.findIndex(e => e.id == land.id);
-                if (lands.data[i].status == 2) {
-                    console.log(`${name}已成熟，开始收获`)
-                    let harvest = await commonPost(`/garden/sorghum/harvest`,JSON.stringify({"id":land.id}));
-                    console.log(harvest.msg)
-                    console.log(`开始种植`)
-                    getMemberInfo = await commonGet("/garden/Gardenmemberinfo/getMemberInfo");
-                    if (getMemberInfo.data.wine_yeast > 0) {
-                        //高粱
-                        let seed = await commonPost(`/garden/sorghum/seed`,JSON.stringify({"id":land.id,"type":1}))
-                        if (seed.err == 61010) {
-                            $.msg($.name, `用户：${id}`, seed.msg);
-                        }
-                        console.log(seed.msg)
-                    } else {
-                        //小麦
-                        let seed = await commonPost(`/garden/sorghum/seed`,JSON.stringify({"id":land.id,"type":2}))
-                        if (seed.err == 61010) {
-                            $.msg($.name, `用户：${id}`, seed.msg);
-                        }
-                        console.log(seed.msg)
-                    }
-                }
-                let code = 0
-                while (code == 0) {
-                    let watering = await commonPost(`/garden/sorghum/watering`,JSON.stringify({"id":land.id}));
-                    console.log(watering.msg)
-                    code = watering.err
-                }
-                code = 0
-                while (code == 0) {
-                    let manuring = await commonPost(`/garden/sorghum/manuring`,JSON.stringify({"id":land.id}));
-                    console.log(manuring.msg)
-                    code = manuring.err
-                }
-            }
-        }
-        //任务
-        console.log("————————————")
-        console.log("开始做任务")
-        let tasks = await commonGet("/garden/tasks/index");
-        for (let task of tasks.data) {
-            console.log(`任务：${task.name} id：${task.id}`)
-            if (task.is_complete == 1) {
-                console.log("任务已完成")
-            } else {
-                if (task.id == 1) {
-                    let question = await commonGet(`/garden/Gardenquestiontask/index`);
-                    let answer = [{"itemid":`${question.data[0].id}`,"selected":`${question.data[0].answer}`}]
-                    let answerResults = await commonGet(`/garden/Gardenquestiontask/answerResults?answer=${encodeURI(JSON.stringify(answer))}`);
-                    console.log(answerResults.msg)
-                }
-                if (task.id == 2) {
-                    for (let i = 0; i < task.limit_num; i++) {
-                        let dailyShare = await commonGet("/garden/gardenmemberinfo/dailyShare");
-                        console.log(dailyShare.msg)
-                    }
-                }
-                if (task.id == 4) {
-                    let realScene = await commonGet("/garden/notice/realScene");
-                    let reward = await commonGet(`/garden/realscene/reward`);
-                    console.log(reward.msg)
-                }
-            }
-        }
-        //添加好友
-        console.log("————————————")
-        console.log("开始添加好友")
-        let addFriendToken = await commonGet("/garden/friends/addFriendToken");
-        addFriendToken = addFriendToken.data;
-        addFriendToken.friend_id = id
-        console.log(`助力码：${JSON.stringify(addFriendToken)}`)
-        //let add = await commonPost("/garden/friends/add",JSON.stringify({"friend_id":"15920333","time":"1714111454","token":"d75d8073df5b1d10507d6e30677d68c9"}));
-        //console.log(add.msg)
-        //制曲
-        console.log("————————————")
-        console.log("开始制曲")
-        let code = 0
-        while (code == 0) {
-            let makeWineYeast = await makePost("/garden/wheat/makeWineYeast",'volumn=100');
-            console.log(makeWineYeast.msg)
-            code = makeWineYeast.err
-        }
-        //制酒
-        console.log("————————————")
-        console.log("开始制酒")
-        let wine = await commonGet("/garden/gardenmemberwine/index");
-        if (wine.total == 0) {
-            console.log("没有正在酿造的酒，开始制酒")
-            let makeWine = await makePost("/garden/gardenmemberwine/makeWine",'volumn=200');
-            console.log(makeWine.msg)
-        }
-        for (let item of wine.data) {
-            console.log(`酒*${item.crrent_volumn} 收获时间：${item.crop_time}`)
-            if (item.status == 4) {
-                let harvestWine = await commonGet(`/garden/gardenmemberwine/harvestWine?id=${item.id}`);
-                console.log(harvestWine.msg)
-            }
-        }
-        //兑换
-        console.log("————————————")
-        console.log("兑换")
-        getMemberInfo = await commonGet("/garden/Gardenmemberinfo/getMemberInfo");
-        console.log(`拥有酒：${getMemberInfo.data.wine}`)
-        if (XiJiu_Exchange) {
-            let exchange = await commonGet(`/garden/Gardenjifenshop/exchange?wine=${getMemberInfo.data.wine}`);
-            console.log(exchange.msg)
-        }
+    //     console.log("————————————")
+    //     console.log("开始每日验证")
+    //     let getValidateInfo = await commonGet(`/garden/slide_validate/getValidateInfo`);
+    //     if (getValidateInfo.data.status == 1) {
+    //         let gap = getValidateInfo.data.datas[1].split(",")[1];
+    //         let bg = getValidateInfo.data.datas[0].split(",")[1];
+    //         let getXpos = await slidePost('huakuai.xzxxn7.live',{'gap': gap, 'bg': bg})
+    //         if (!getXpos) {
+    //             getXpos = await slidePost('107.22.24.202:9999',{'gap': getValidateInfo.data.datas[1], 'bg': getValidateInfo.data.datas[0]})
+    //             if (!getXpos) {
+    //                 console.log("滑块验证服务不在运行，请联系作者")
+    //                 $.msg($.name, `滑块验证服务不在运行，请联系作者`);
+    //             }
+    //         }
+    //         console.log(getXpos)
+    //         let toValidate = await commonPost(`/garden/slide_validate/toValidate`,JSON.stringify({"coordinate":getXpos.x_coordinate}));
+    //         console.log(toValidate.msg)
+    //     } else {
+    //         console.log(getValidateInfo.msg)
+    //     }
+    //     //每日签到
+    //     console.log("————————————")
+    //     console.log("开始每日签到")
+    //     let dailySign = await commonPost("/garden/sign/dailySign",JSON.stringify({}));
+    //     if (dailySign.data.isTodayFirstSign) {
+    //         console.log(dailySign.data.tips)
+    //     } else {
+    //         console.log('今日已签到')
+    //     }
+    //     //种植
+    //     console.log("————————————")
+    //     console.log("开始种植")
+    //     let getMemberInfo = await commonGet("/garden/Gardenmemberinfo/getMemberInfo");
+    //     console.log(`拥有：高粱*${getMemberInfo.data.sorghum} 小麦*${getMemberInfo.data.wheat} 酒曲*${getMemberInfo.data.wine_yeast} 酒*${getMemberInfo.data.wine} 水*${getMemberInfo.data.water} 肥料*${getMemberInfo.data.manure}`)
+    //     let lands = await commonGet("/garden/sorghum/index");
+    //     let unLock = true
+    //     for (let land of lands.data) {
+    //         if (land.status == -1) {
+    //             console.log(`第${land.serial_number}块地：未解锁`)
+    //             //解锁
+    //             if (unLock) {
+    //                 console.log(`开始解锁土地`)
+    //                 let extend = await commonPost(`/garden/sorghum/extend`,JSON.stringify({"serial_number":land.serial_number}))
+    //                 if (extend.err == 0) {
+    //                     console.log(extend.msg)
+    //                     //种植
+    //                     console.log(`开始种植`)
+    //                     getMemberInfo = await commonGet("/garden/Gardenmemberinfo/getMemberInfo");
+    //                     if (getMemberInfo.data.wine_yeast > 0) {
+    //                         //高粱
+    //                         let seed = await commonPost(`/garden/sorghum/seed`,JSON.stringify({"id":land.id,"type":1}))
+    //                         if (seed.err == 61010) {
+    //                             $.msg($.name, `用户：${id}`, seed.msg);
+    //                         }
+    //                         console.log(seed.msg)
+    //                     } else {
+    //                         //小麦
+    //                         let seed = await commonPost(`/garden/sorghum/seed`,JSON.stringify({"id":land.id,"type":2}))
+    //                         if (seed.err == 61010) {
+    //                             $.msg($.name, `用户：${id}`, seed.msg);
+    //                         }
+    //                         console.log(seed.msg)
+    //                     }
+    //                 } else {
+    //                     console.log(extend.msg)
+    //                     unLock = false
+    //                 }
+    //             }
+    //         } else {
+    //             console.log(`第${land.serial_number}块地：已解锁`)
+    //             let name = cropType.find(item => land.type in item)[land.type];
+    //             console.log(`种植：${name}*${land.volumn} 收获时间：${land.crop_time}`)
+    //             if (land.status == 0) {
+    //                 console.log(`${name}已收获，未种植`)
+    //                 console.log(`开始种植`)
+    //                 getMemberInfo = await commonGet("/garden/Gardenmemberinfo/getMemberInfo");
+    //                 if (getMemberInfo.data.wine_yeast > 0) {
+    //                     //高粱
+    //                     let seed = await commonPost(`/garden/sorghum/seed`,JSON.stringify({"id":land.id,"type":1}))
+    //                     if (seed.err == 61010) {
+    //                         $.msg($.name, `用户：${id}`, seed.msg);
+    //                     }
+    //                     console.log(seed.msg)
+    //                 } else {
+    //                     //小麦
+    //                     let seed = await commonPost(`/garden/sorghum/seed`,JSON.stringify({"id":land.id,"type":2}))
+    //                     if (seed.err == 61010) {
+    //                         $.msg($.name, `用户：${id}`, seed.msg);
+    //                     }
+    //                     console.log(seed.msg)
+    //                 }
+    //             } else if (land.status == 2) {
+    //                 console.log(`${name}已成熟，开始收获`)
+    //                 let harvest = await commonPost(`/garden/sorghum/harvest`,JSON.stringify({"id":land.id}));
+    //                 console.log(harvest.msg)
+    //                 console.log(`开始种植`)
+    //                 getMemberInfo = await commonGet("/garden/Gardenmemberinfo/getMemberInfo");
+    //                 if (getMemberInfo.data.wine_yeast > 0) {
+    //                     //高粱
+    //                     let seed = await commonPost(`/garden/sorghum/seed`,JSON.stringify({"id":land.id,"type":1}))
+    //                     if (seed.err == 61010) {
+    //                         $.msg($.name, `用户：${id}`, seed.msg);
+    //                     }
+    //                     console.log(seed.msg)
+    //                 } else {
+    //                     //小麦
+    //                     let seed = await commonPost(`/garden/sorghum/seed`,JSON.stringify({"id":land.id,"type":2}))
+    //                     if (seed.err == 61010) {
+    //                         $.msg($.name, `用户：${id}`, seed.msg);
+    //                     }
+    //                     console.log(seed.msg)
+    //                 }
+    //             } else {
+    //                 let code = 0
+    //                 while (code == 0) {
+    //                     let watering = await commonPost(`/garden/sorghum/watering`,JSON.stringify({"id":land.id}));
+    //                     console.log(watering.msg)
+    //                     code = watering.err
+    //                 }
+    //                 code = 0
+    //                 while (code == 0) {
+    //                     let manuring = await commonPost(`/garden/sorghum/manuring`,JSON.stringify({"id":land.id}));
+    //                     console.log(manuring.msg)
+    //                     code = manuring.err
+    //                 }
+    //             }
+    //             lands = await commonGet("/garden/sorghum/index");
+    //             const i = lands.data.findIndex(e => e.id == land.id);
+    //             if (lands.data[i].status == 2) {
+    //                 console.log(`${name}已成熟，开始收获`)
+    //                 let harvest = await commonPost(`/garden/sorghum/harvest`,JSON.stringify({"id":land.id}));
+    //                 console.log(harvest.msg)
+    //                 console.log(`开始种植`)
+    //                 getMemberInfo = await commonGet("/garden/Gardenmemberinfo/getMemberInfo");
+    //                 if (getMemberInfo.data.wine_yeast > 0) {
+    //                     //高粱
+    //                     let seed = await commonPost(`/garden/sorghum/seed`,JSON.stringify({"id":land.id,"type":1}))
+    //                     if (seed.err == 61010) {
+    //                         $.msg($.name, `用户：${id}`, seed.msg);
+    //                     }
+    //                     console.log(seed.msg)
+    //                 } else {
+    //                     //小麦
+    //                     let seed = await commonPost(`/garden/sorghum/seed`,JSON.stringify({"id":land.id,"type":2}))
+    //                     if (seed.err == 61010) {
+    //                         $.msg($.name, `用户：${id}`, seed.msg);
+    //                     }
+    //                     console.log(seed.msg)
+    //                 }
+    //             }
+    //             let code = 0
+    //             while (code == 0) {
+    //                 let watering = await commonPost(`/garden/sorghum/watering`,JSON.stringify({"id":land.id}));
+    //                 console.log(watering.msg)
+    //                 code = watering.err
+    //             }
+    //             code = 0
+    //             while (code == 0) {
+    //                 let manuring = await commonPost(`/garden/sorghum/manuring`,JSON.stringify({"id":land.id}));
+    //                 console.log(manuring.msg)
+    //                 code = manuring.err
+    //             }
+    //         }
+    //     }
+    //     //任务
+    //     console.log("————————————")
+    //     console.log("开始做任务")
+    //     let tasks = await commonGet("/garden/tasks/index");
+    //     for (let task of tasks.data) {
+    //         console.log(`任务：${task.name} id：${task.id}`)
+    //         if (task.is_complete == 1) {
+    //             console.log("任务已完成")
+    //         } else {
+    //             if (task.id == 1) {
+    //                 let question = await commonGet(`/garden/Gardenquestiontask/index`);
+    //                 let answer = [{"itemid":`${question.data[0].id}`,"selected":`${question.data[0].answer}`}]
+    //                 let answerResults = await commonGet(`/garden/Gardenquestiontask/answerResults?answer=${encodeURI(JSON.stringify(answer))}`);
+    //                 console.log(answerResults.msg)
+    //             }
+    //             if (task.id == 2) {
+    //                 for (let i = 0; i < task.limit_num; i++) {
+    //                     let dailyShare = await commonGet("/garden/gardenmemberinfo/dailyShare");
+    //                     console.log(dailyShare.msg)
+    //                 }
+    //             }
+    //             if (task.id == 4) {
+    //                 let realScene = await commonGet("/garden/notice/realScene");
+    //                 let reward = await commonGet(`/garden/realscene/reward`);
+    //                 console.log(reward.msg)
+    //             }
+    //         }
+    //     }
+    //     //添加好友
+    //     console.log("————————————")
+    //     console.log("开始添加好友")
+    //     let addFriendToken = await commonGet("/garden/friends/addFriendToken");
+    //     addFriendToken = addFriendToken.data;
+    //     addFriendToken.friend_id = id
+    //     console.log(`助力码：${JSON.stringify(addFriendToken)}`)
+    //     //let add = await commonPost("/garden/friends/add",JSON.stringify({"friend_id":"15920333","time":"1714111454","token":"d75d8073df5b1d10507d6e30677d68c9"}));
+    //     //console.log(add.msg)
+    //     //制曲
+    //     console.log("————————————")
+    //     console.log("开始制曲")
+    //     let code = 0
+    //     while (code == 0) {
+    //         let makeWineYeast = await makePost("/garden/wheat/makeWineYeast",'volumn=100');
+    //         console.log(makeWineYeast.msg)
+    //         code = makeWineYeast.err
+    //     }
+    //     //制酒
+    //     console.log("————————————")
+    //     console.log("开始制酒")
+    //     let wine = await commonGet("/garden/gardenmemberwine/index");
+    //     if (wine.total == 0) {
+    //         console.log("没有正在酿造的酒，开始制酒")
+    //         let makeWine = await makePost("/garden/gardenmemberwine/makeWine",'volumn=200');
+    //         console.log(makeWine.msg)
+    //     }
+    //     for (let item of wine.data) {
+    //         console.log(`酒*${item.crrent_volumn} 收获时间：${item.crop_time}`)
+    //         if (item.status == 4) {
+    //             let harvestWine = await commonGet(`/garden/gardenmemberwine/harvestWine?id=${item.id}`);
+    //             console.log(harvestWine.msg)
+    //         }
+    //     }
+    //     //兑换
+    //     console.log("————————————")
+    //     console.log("兑换")
+    //     getMemberInfo = await commonGet("/garden/Gardenmemberinfo/getMemberInfo");
+    //     console.log(`拥有酒：${getMemberInfo.data.wine}`)
+    //     if (XiJiu_Exchange) {
+    //         let exchange = await commonGet(`/garden/Gardenjifenshop/exchange?wine=${getMemberInfo.data.wine}`);
+    //         console.log(exchange.msg)
+    //     }
         //查询积分
         console.log("————————————")
         console.log("查询积分")
