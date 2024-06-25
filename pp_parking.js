@@ -6,7 +6,7 @@
  * BoxJs 订阅：https://raw.githubusercontent.com/FoKit/Scripts/main/boxjs/fokit.boxjs.json
  * 更新时间：2024-03-11 新增 3 个浏览任务，感谢 @leiyiyan 提供帮助
  * 更新时间：2024-03-12 新增用户昵称和积分查询，修复看视频任务二次任务
-cron: 5 9* * *
+cron: 5 9 * * *
 fix 20240625 ArcadiaScriptPublic  频道：https://t.me/ArcadiaScript 群组：https://t.me/ArcadiaScriptPublic
 增加打印签到信息
 更新cron
@@ -65,7 +65,7 @@ script-providers:
 
  */
 
-const $ = new Env('PP 停车');
+const $ = new Env('PP停车');
 $.is_debug = ($.isNode() ? process.env['IS_DEDUG'] : $.getdata('is_debug')) || 'false';  // 调试模式
 //let userId = ($.isNode() ? process.env.jtc_userId : $.getdata(jtc_userId_key)) || '', userIdArr = [];
 let token = ($.isNode() ? process.env['PP_TOKEN'] : $.getdata('pp_token')) || '', tokenArr = []; // Token
