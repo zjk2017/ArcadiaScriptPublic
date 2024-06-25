@@ -1,5 +1,5 @@
 /**
-cron: 5 9* * *
+cron: 5 9 * * *
 fix 20240625 ArcadiaScriptPublic  频道：https://t.me/ArcadiaScript 群组：https://t.me/ArcadiaScriptPublic
 增加打印签到信息
 更新cron
