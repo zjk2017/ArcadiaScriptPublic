@@ -6,7 +6,6 @@
 变量
 export jiekahd='XXXXXXX'
 多号@或换行
-corn: 6 8 * * *
 
 cron: 12 8 * * *
 fix 20240625 ArcadiaScriptPublic  频道：https://t.me/ArcadiaScript 群组：https://t.me/ArcadiaScriptPublic
