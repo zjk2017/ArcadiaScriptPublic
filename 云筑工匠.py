@@ -1,6 +1,5 @@
 '''
 云筑工匠py版
-
 fix 20240625 ArcadiaScriptPublic  频道：https://t.me/ArcadiaScript 群组：https://t.me/ArcadiaScriptPublic
 new Env("云筑工匠py版")
 cron: 1 7 * * *
