@@ -32,7 +32,7 @@ export szwhd='Cookie'
 需要先加入会员 去签到页面随便输入名字直接点加入会员
 
 new Env("华润通")
-cron: 5 9* * *
+cron: 15 7 * * *
 fix 20240625 ArcadiaScriptPublic  频道：https://t.me/ArcadiaScript 群组：https://t.me/ArcadiaScriptPublic
 增加打印签到信息
 更新cron
