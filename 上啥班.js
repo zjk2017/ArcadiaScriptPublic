@@ -10,7 +10,7 @@
 定时:每天一到二次
 new Env('上啥班');
 
-cron: 18 4,22 * * *
+cron: 18 8,18 * * *
 fix 20240625 ArcadiaScriptPublic  频道：https://t.me/ArcadiaScript 群组：https://t.me/ArcadiaScriptPublic
 增加打印签到信息 更新cron
 项目名称：上啥班
