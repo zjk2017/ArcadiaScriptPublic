@@ -6,7 +6,7 @@ export yayihd='手机号&密码'
 10话费
 cron: 8 9,14 * * *
 
-new Env('45-牙e家');
+
 项目名称：牙e家
 
 fix 20240625 ArcadiaScriptPublic  频道：https://t.me/ArcadiaScript 群组：https://t.me/ArcadiaScriptPublic
