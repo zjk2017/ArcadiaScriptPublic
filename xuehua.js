@@ -20,7 +20,7 @@ fix 20240625 ArcadiaScriptPublic  频道：https://t.me/ArcadiaScript 群组：h
 https://superx.crb.cn/Api/b1/GetUserInfo\?sessionKey=\S+ url script-request-url http://nm6.xyz:20080/ningmeng/ningmeng/raw/branch/main/xuehua.js
 */
 //[task_local]
-//0 */1 * * * http://nm6.xyz:20080/ningmeng/ningmeng/raw/branch/main/xuehua.js, tag=雪花勇闯天涯, enabled=true
+//http://nm6.xyz:20080/ningmeng/ningmeng/raw/branch/main/xuehua.js, tag=雪花勇闯天涯, enabled=true
 
 
 const $ = new Env('雪花勇闯天涯');
