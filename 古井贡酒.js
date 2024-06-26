@@ -1,8 +1,14 @@
 /**
 cron: 22 8,12,18,20 * * *
 fix 20240625 ArcadiaScriptPublic  频道：https://t.me/ArcadiaScript 群组：https://t.me/ArcadiaScriptPublic
-增加打印签到信息
+解决青龙不能跑问题
 更新cron
+[
+    {
+        "token": "ey....",
+        "memberId": "xxxx"
+    }
+]
  */
 
 
