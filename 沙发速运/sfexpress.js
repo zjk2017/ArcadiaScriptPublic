@@ -1,7 +1,8 @@
 #!/usr/bin/python3
 # -- coding: utf-8 --
 # -------------------------------
-# @Author : github@limoruirui https://github.com/limoruirui
+# @Author : fix 20240627 ArcadiaScriptPublic  频道：https://t.me/ArcadiaScript 群组：https://t.me/ArcadiaScriptPublic leaf删库 上传老本 新本在偷撸
+# @Author : github@limoruirui https://github.com/limoruirui 
 # @Time : 2022/8/1 23:33
 # -------------------------------
 # cron ""
