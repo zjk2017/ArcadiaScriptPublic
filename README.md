@@ -1,4 +1,4 @@
-青龙脚本库
+青龙脚本库,目前库里都有效,有bug提isiues
 
 频道
 https://t.me/ArcadiaScript
