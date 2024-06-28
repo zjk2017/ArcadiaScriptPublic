@@ -1,5 +1,5 @@
 """
-观美日本(资生堂）
+观美日本-资生堂的小程序
 cron: 5 9 * * *
 new Env("观美日本(资生堂）")
 fix 20240625 ArcadiaScriptPublic  频道：https://t.me/ArcadiaScript 群组：https://t.me/ArcadiaScriptPublic
