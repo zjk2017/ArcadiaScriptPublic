@@ -46,7 +46,6 @@ var timestamp = Math.round(new Date().getTime()).toString();
 
 
 
-            log(`\n============ 微信公众号：柠檬玩机交流 ============`)
             log(`\n=================== 共找到 ${yayihdArr.length} 个账号 ===================`)
             if (debug) {
                 log(`【debug】 这是你的全部账号数组:\n ${yayihdArr}`);
