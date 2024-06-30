@@ -7,6 +7,7 @@ https://t.me/ArcadiaScript
 https://t.me/ArcadiaScriptPublic
 
 访问统计
+![img](https://profile-counter.glitch.me/zjk2017/count.svg)
 
 
 ![](https://komarev.com/ghpvc/?username=zjk2017)
