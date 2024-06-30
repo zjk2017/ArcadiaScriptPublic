@@ -26,6 +26,8 @@
 //Modify:https://github.com/smallfawn/decode_action
 const $ = new Env("少妇签到"),
   debug = 0,
+  Notify = 2,
+
   axios = require("axios");
 let request = require("request");
 request = request.defaults({
