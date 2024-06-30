@@ -50,7 +50,6 @@ var timestamp = Math.round(new Date().getTime()/1000).toString();
                 8 * 60 * 60 * 1000).toLocaleString()} \n=============================================\n`);
 
 
-            log(`\n============ 微信公众号：柠檬玩机交流 ============`)
             log(`\n=================== 共找到 ${jiekahdArr.length} 个账号 ===================`)
             if (debug) {
                 log(`【debug】 这是你的全部账号数组:\n ${jiekahdArr}`);
