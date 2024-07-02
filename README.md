@@ -6,6 +6,10 @@ https://t.me/ArcadiaScript
 群组
 https://t.me/ArcadiaScriptPublic
 
+ql repo http://gh.tt.ma/https://github.com/zjk2017/ArcadiaScriptPublic.git "" news|leaf|BackUp
+
+
+
 访问统计
 ![img](https://profile-counter.glitch.me/zjk2017/count.svg)
 
