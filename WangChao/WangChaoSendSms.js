@@ -1,3 +1,7 @@
+// cron: 12 8 * * *
+// fix 20240702 ArcadiaScriptPublic  频道：https://t.me/ArcadiaScript 群组：https://t.me/ArcadiaScriptPublic
+// 运行一次就ok 变量WangChao_Phone=11111
+// 更新cron
 const $ = new Env('望潮-发送验证码')
 let phone = ($.isNode() ? process.env.WangChao_Phone : $.getdata("WangChao_Phone")) || "";
 let Utils = undefined;
