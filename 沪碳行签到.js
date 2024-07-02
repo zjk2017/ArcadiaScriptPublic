@@ -64,7 +64,7 @@ class UserInfo {
 			if (result.respcod == '01'){
 				console.log(`${this.index}  ${result.respmsg}`)
 			}else if (result.respcod == '02'){
-				console.log(`${this.index}  ${result.respmsg}`)
+				console.log(`签到成功 ${this.index}  ${result.respmsg}`)
 			}else if (result.respcod == '04'){
 				console.log(`${this.index}  ${result.respmsg}`)
 			}
@@ -90,7 +90,7 @@ class UserInfo {
 			// console.log(`${this.index}  答题 ${result.respmsg}   `)
 			// await this.dt()
 			}else if (result.respcod == '02'){
-				console.log(result.respmsg)
+				console.log(` ${result.respmsg}`)
 			}else if (result.respcod == '04'){
 				console.log(result.respmsg)
 			}
