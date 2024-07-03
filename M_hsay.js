@@ -1,7 +1,7 @@
 /**************************************
 fix 20240625 ArcadiaScriptPublic  频道：https://t.me/ArcadiaScript 群组：https://t.me/ArcadiaScriptPublic
 2024.07.02 修复活动id改变 签到失败的问题 增加活动id参数hsay_data_activity 签到接口url参数hsay_data_url 删除旧签到接口 青龙可用其他环境未测试
-
+url一般不会变https://webapi.qmai.cn/web/cmk-center/sign/takePartInSign 活动id在有积分快要失效的下月1号会变
 
 脚本名称：微信小程序 沪上阿姨 签到
 脚本作者：@Sliverkiss
