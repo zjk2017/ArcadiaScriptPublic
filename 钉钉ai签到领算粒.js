@@ -1,11 +1,8 @@
 /*
-    "钉钉AI签到领算粒"
-    new Env("钉钉个人空间 AI签到领算粒")
+    name: "钉钉AI签到领算粒"   new Env("钉钉个人空间 AI签到领算粒")
     cron: 10 10 16 * * *
-    脚本兼容: 金山文档， 青龙
-    更新时间：20240625
-    fix 20240705 ArcadiaScriptPublic  频道：https://t.me/ArcadiaScript 群组：https://t.me/ArcadiaScriptPublic 阿卡迪亚库https://github.com/zjk2017/ArcadiaScriptPublic 
-   变量名ddai  钉钉头像点个人空间然后进签到 抓api-wolai.dingtalk.com的cookie即可 
+    脚本兼容: 金山文档， 青龙   更新时间：20240625
+    fix 20240705 ArcadiaScriptPublic  频道：https://t.me/ArcadiaScript 群组：https://t.me/ArcadiaScriptPublic 阿卡迪亚库https://github.com/zjk2017/ArcadiaScriptPublic   变量名ddai  钉钉头像点个人空间然后进签到 抓api-wolai.dingtalk.com的cookie即可 
 */
 
 const logo = "阿卡迪亚库https://github.com/zjk2017/ArcadiaScriptPublic 原作者艾默库 : https://github.com/imoki/sign_script "    // 仓库地址
