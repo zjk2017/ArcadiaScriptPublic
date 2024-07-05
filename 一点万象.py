@@ -1,19 +1,22 @@
 #!/usr/bin/python3
 # -- coding: utf-8 -- 
-# -------------------------------
+# 原作者
 # @Author : github@wd210010 https://github.com/wd210010/just_for_happy
 # @Time : 2023/2/27 13:23
 # -------------------------------
-# cron: 17 8 * * *
-# const $ = new Env('一点万象签到')
-# fix 20240625 ArcadiaScriptPublic  频道：https://t.me/ArcadiaScript 群组：https://t.me/ArcadiaScriptPublic
-# 增加打印签到信息
+'''
+cron: 17 8 * * *
+const $ = new Env('一点万象签到')
+fix 20240625 ArcadiaScriptPublic  频道：https://t.me/ArcadiaScript 群组：https://t.me/ArcadiaScriptPublic
+修改描述
 
+#登录后搜索https://app.mixcapp.com/mixc/gateway域名随意一个 请求体里面的deviceParams，token 多账号填多个单引号里面 用英文&隔开
+ydwx_deviceParams 值deviceParams1&deviceParams2
+ydwx_token 值token1&token2
+
+'''
 import requests,time,hashlib,json
 import os
-
-#一点万向签到领万向星 可抵扣停车费
-#登录后搜索https://app.mixcapp.com/mixc/gateway域名随意一个 请求体里面的deviceParams，token 多账号填多个单引号里面 用英文逗号隔开
 # 本地运行用取消下面两行注释 并注释掉青龙变量的两行变量
 # ydwx_deviceParams=['deviceParams1','deviceParams2']
 # ydwx_token =['token1','token2']
