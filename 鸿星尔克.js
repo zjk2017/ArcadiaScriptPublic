@@ -1,11 +1,11 @@
 /*
-    name: "鸿星尔克" new Env("鸿星尔克官方会员中心小程序")
+    name: "鸿星尔克"
     cron: 10 30 9 * * *
-    脚本兼容: 金山文档， 青龙更新时间：20240705
-fix 20240705 ArcadiaScriptPublic  频道：https://t.me/ArcadiaScript 群组：https://t.me/ArcadiaScriptPublic 阿卡迪亚库https://github.com/zjk2017/ArcadiaScriptPublic  鸿星尔克变量hxek 值sign# memberId# enterpriseId #random 这样写可能有多的参数能签到 后续观察下
+    脚本兼容: 金山文档，  new Env("鸿星尔克官方会员中心小程序") 青龙 fix 20240705 ArcadiaScriptPublic  频道：https://t.me/ArcadiaScript 群组：https://t.me/ArcadiaScriptPublic 阿卡迪亚库https://github.com/zjk2017/ArcadiaScriptPublic  鸿星尔克变量hxek 值sign# memberId# enterpriseId #random 这样写可能有多的参数能签到 后续观察下
+    更新时间：20240623
 */
-
-const logo = "阿卡迪亚库https://github.com/zjk2017/ArcadiaScriptPublic 原作者艾默库 : https://github.com/imoki/sign_script "    // 仓库地址
+const logo0 = "阿卡迪亚库https://github.com/zjk2017/ArcadiaScriptPublic 原作者艾默库 : https://github.com/imoki/sign_script "    // 仓库地址
+const logo = "艾默库 : https://github.com/imoki/sign_script"    // 仓库地址
 let sheetNameSubConfig = "hxek"; // 分配置表名称（修改这里，这里填表的名称，需要和UPDATE文件中的一致，自定义的）
 let pushHeader = "【鸿星尔克】";    //（修改这里，这里给自己看的，随便填）
 let sheetNameConfig = "CONFIG"; // 总配置表
