@@ -1,15 +1,10 @@
 /*
- 
     new Env("wps打卡")
     cron: 10 0 17 * * *
-    脚本兼容: 金山文档， 青龙
-    更新时间：20240630
-
-   
+    脚本兼容: 金山文档， 青龙  更新时间：20240630
     fix 20240705 ArcadiaScriptPublic  频道：https://t.me/ArcadiaScript 群组：https://t.me/ArcadiaScriptPublic 阿卡迪亚库https://github.com/zjk2017/ArcadiaScriptPublic 
     环境变量名：wps
-    环境变量值：wps_sid#转存PPT(是/否)#是否渠道1打卡(是/否)#是否渠道2打卡(是/否)#Signature(渠道2)
-    抓https://docs.wps.cn里面cookie 里的wps_sid
+    环境变量值：wps_sid#转存PPT(是/否)#是否渠道1打卡(是/否)#是否渠道2打卡(是/否)#Signature(渠道2) 抓https://docs.wps.cn里面cookie 里的wps_sid
     通用例子(目前仅支持渠道1，只需要替换xxx1为自己的wps_sid即可，其他的不用改)：xxx1#否#是#否#xxx2
 */
 
