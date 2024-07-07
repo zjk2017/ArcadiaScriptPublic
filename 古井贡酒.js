@@ -3,10 +3,16 @@ cron: 22 8,12,18,20 * * *
 fix 20240625 ArcadiaScriptPublic  频道：https://t.me/ArcadiaScript 群组：https://t.me/ArcadiaScriptPublic
 解决青龙不能跑问题
 更新cron
+ck名称：GuJing
+值的格式如下
 [
     {
         "token": "ey....",
-        "memberId": "xxxx"
+        "memberId": "一串数字"
+    },
+    {
+        "token": "ey....",
+        "memberId": "一串数字"
     }
 ]
  */
