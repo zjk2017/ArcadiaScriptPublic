@@ -4,10 +4,16 @@
  * 脚本说明：添加重写进入途虎养车小程序积分页面即可获取 Token，支持多账号，兼容 NE / Node.js 环境。
  * 环境变量：TUHU_TOKEN、TUHU_BLACKBOX / CODESERVER_ADDRESS、CODESERVER_FUN、TUHU_BLACKBOX
  * 更新时间：2024-03-20
+========================================================================================================
 cron: 12 8 * * *
-fix 20240625 ArcadiaScriptPublic  频道：https://t.me/ArcadiaScript 群组：https://t.me/ArcadiaScriptPublic
+fix 20240707 ArcadiaScriptPublic  频道：https://t.me/ArcadiaScript 群组：https://t.me/ArcadiaScriptPublic
 增加打印签到信息
 更新cron
+青龙环境变量：TUHU_TOKEN、TUHU_BLACKBOX  ，可以随便填（ CODESERVER_ADDRESS、CODESERVER_FUN）
+api.tuhu.cn域名下 TUHU_TOKEN不要 Bearer 不要空格  ck比较长 个把月都不会变
+TUHU_BLACKBOX只有7天 抓的发现和上次一样 你就重新换个任意接口 保险的话最好两个ck都更新一下
+========================================================================================================
+
 # BoxJs订阅：https://raw.githubusercontent.com/FoKit/Scripts/main/boxjs/fokit.boxjs.json
 
 ------------------ Surge 配置 -----------------
