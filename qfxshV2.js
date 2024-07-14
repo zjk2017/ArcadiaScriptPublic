@@ -1,7 +1,7 @@
 /*
 地址：
 
-#小程序://起飞线/x8h0xqNEoODRlyg
+#小程序://起飞线
 
 复制以上 微信打开
 
@@ -19,7 +19,7 @@ fix 20240625 ArcadiaScriptPublic  频道：https://t.me/ArcadiaScript 群组：h
 
 
 
-const $ = new Env('小兔快跑');
+const $ = new Env('起飞线生活的小兔快跑');
 const axios = require('axios');
 let request = require("request");
 request = request.defaults({
