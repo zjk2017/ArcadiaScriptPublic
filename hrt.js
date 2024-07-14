@@ -100,7 +100,7 @@ let hrthd = ($.isNode() ? process.env.hrthd : $.getdata("hrthd")) || "",
         await oleloign();
         await oleinfo();
       }
-      await SendMsg(msg);
+      // await SendMsg(msg);
     }
   }
 })().catch(_0x145d21 => log(_0x145d21)).finally(() => $.done());
