@@ -30,7 +30,7 @@ let msg = ''
 async function main(userInfo) {
 
     await userInfo.grxx()
-    // await userInfo.sign()
+     await userInfo.sign()
      // 使用该函数
     sleepForTenSeconds().then(() => {
             userInfo.grxx()
