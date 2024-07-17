@@ -3,7 +3,8 @@
 fix 20240625 ArcadiaScriptPublic  频道：https://t.me/ArcadiaScript 群组：https://t.me/ArcadiaScriptPublic
 new Env("云筑工匠py版")
 cron: 1 7 * * *
-yunzhupy id&cookie id写15   
+yunzhupy id&cookie id写15   15代表看15次
+yunzhupytixian 提现设置 True 或False 0717增加
 '''
 import requests
 import time
@@ -61,9 +62,10 @@ def watchad(cookie):
     if errorCode==50:
         print("请求过快失败")
     elif  errorCode==200:
-        print("看视频成功")
+        coinAmount=res['data']['coinAmount']
+        print(f"看视频成功,获得{coinAmount}金币")
     else:
-        print("失败")
+        print("看视频失败")
     # print(res['errorCode'])
     return response.text
 
@@ -158,6 +160,7 @@ def withdraw(cookie):
 if __name__ == "__main__":
     res = ''
     mx = os.environ.get('yunzhupy')
+    yunzhupytixian = os.environ.get('yunzhupytixian')
     if not mx:
         print("请设置环境变量在运行")
     else:
@@ -172,9 +175,15 @@ if __name__ == "__main__":
               time.sleep(35)
             t=getmoney(cookie)
             print(f"余额:{t}")
-            if t>=1:
+
+            bool_value = True if yunzhupytixian == "True" else False
+            # print(bool_value)  # 输出: False
+            # print(type(bool_value))
+            # print(f"提现设置:{bool_value}")
+
+            if t>=1 and bool_value:
                 print("30天内满1元提现：")
                 withdraw(cookie)
-            
+
     # if send:
     #     send("云筑工匠任务通知", res)
