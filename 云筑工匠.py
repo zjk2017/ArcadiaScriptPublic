@@ -57,13 +57,18 @@ def watchad(cookie):
     print(response.text)
     res=response.json()
     errorCode=res['code']
+    message=res['message']
 #{"success":true,"code":200,"message":"请求成功","data":{"coinAmount":2776,"frequency":2,"adTaskStatus":0}} 
 #{"success":true,"code":200,"message":"请求成功","data":{"coinAmount":1888,"frequency":3,"adTaskStatus":0}}
+# {"success":false,"code":500,"message":"当日任务完成","data":null}
+
     if errorCode==50:
         print("请求过快失败")
     elif  errorCode==200:
         coinAmount=res['data']['coinAmount']
         print(f"看视频成功,获得{coinAmount}金币")
+    elif  errorCode==500 and message=="当日任务完成":
+        print(f"当日任务完成 看视频成功)
     else:
         print("看视频失败")
     # print(res['errorCode'])
