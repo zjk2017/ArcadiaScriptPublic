@@ -68,7 +68,7 @@ def watchad(cookie):
         coinAmount=res['data']['coinAmount']
         print(f"看视频成功,获得{coinAmount}金币")
     elif  errorCode==500 and message=="当日任务完成":
-        print(f"当日任务完成 看视频成功)
+        print(f"当日任务完成 看视频成功")
     else:
         print("看视频失败")
     # print(res['errorCode'])
