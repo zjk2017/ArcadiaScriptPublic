@@ -54,7 +54,7 @@ def watchad(cookie):
      }
     # print(json)
     response = requests.post(url, headers=headers,json=json)
-    print(response.text)
+    #print(response.text)
     res=response.json()
     errorCode=res['code']
     message=res['message']
