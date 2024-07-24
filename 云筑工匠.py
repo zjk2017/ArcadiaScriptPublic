@@ -4,6 +4,7 @@ fix 20240625 ArcadiaScriptPublic  频道：https://t.me/ArcadiaScript 群组：h
 new Env("云筑工匠py版")
 cron: 1 7 * * *
 yunzhupy id&cookie id写15   15代表看15次
+抓db-api.yzw.cn的x-yz-mobile-cookie 注意空格 最前面不要空格
 yunzhupytixian 提现设置 True 或False 0717增加
 '''
 import requests
