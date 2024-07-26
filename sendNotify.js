@@ -105,7 +105,7 @@ let IGOT_PUSH_KEY = '';
 //官方文档：http://www.pushplus.plus/
 //PUSH_PLUS_TOKEN：微信扫码登录后一对一推送或一对多推送下面的token(您的Token)，不提供PUSH_PLUS_USER则默认为一对一推送
 //PUSH_PLUS_USER： 一对多推送的“群组编码”（一对多推送下面->您的群组(如无则新建)->群组编码，如果您是创建群组人。也需点击“查看二维码”扫描绑定，否则不能接受群组消息推送）
-let PUSH_PLUS_TOKEN = '793487800fc444a4b3d21289379d924e';
+let PUSH_PLUS_TOKEN = '';
 let PUSH_PLUS_USER = '';
 
 // =======================================Cool Push设置区域=======================================
