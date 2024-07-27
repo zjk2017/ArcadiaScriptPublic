@@ -4,7 +4,7 @@
  * 不是江苏用户 不是有线用户 不是南京的 都可以玩
  * 江苏有线南京分公司公众号里面有奥运会 使用完整服务时要关注另外一个公众号江苏有线营业厅
  * 抓https://www.js96296.com/dzyyt/ppc/dzyyt/wchat/marketingActivity/checkProIsLogin接口请求头的加密数据，其他接口加密请求头也可以 复制到xxxx==里面解密就会出现openid
- * 青龙环境 在main()第一行后加如下代码解密一下openId 然后在运行 自动解密的如suege可以无视
+ * 青龙环境 在main()第一行后加如下代码解密一下openId 然后在运行 自动解密的如surge可以无视
  * console.log(decrypt("xxxx==")) 
  * 最前面//是注释 要删掉
 原作者xzxxn
