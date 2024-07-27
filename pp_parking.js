@@ -124,7 +124,11 @@ async function main() {
     throw new Error('未找到 Token 变量 ❌');
   }
 }
-
+function randomSleep(minMs, maxMs) {
+    // 计算最小值和最大值之间的随机时间（包括边界值）
+    const delay = Math.floor(Math.random() * (maxMs - minMs + 1)) + minMs;
+    return new Promise(resolve => setTimeout(resolve, delay));
+}
 
 // 获取任务列表
 async function task() {
@@ -158,6 +162,8 @@ async function task() {
 
     for (let i = 0; i < repeatLimit; i++) {
       for (const item of row) {
+    await randomSleep(30000, 35000); // 等待30到35秒之间的随机时间
+
         let purpose = item['purpose'];
         let taskName = i > 0 ? item['name'] + (i + 1) : item['name'];
         if (item['referer_url'].includes('voucher=')) {
