@@ -3,9 +3,10 @@
 fix 20240625 ArcadiaScriptPublic  频道：https://t.me/ArcadiaScript 群组：https://t.me/ArcadiaScriptPublic
 new Env("云筑工匠py版")
 cron: 1 7 * * *
-yunzhupy id&cookie id写15   15代表看15次
+yunzhupy id&cookie&useragent id写15   15代表看15次
 抓db-api.yzw.cn的x-yz-mobile-cookie 注意空格 最前面不要空格
 yunzhupytixian 提现设置 True 或False 0717增加
+0730用自己useragent试试
 '''
 import requests
 import time
@@ -30,7 +31,7 @@ from os import environ, path
 # load_send()
 
 
-def watchad(cookie):
+def watchad(cookie,useragent):
     url = "https://db-api.yzw.cn/appc/v1/activity/ad/record" 
     headers = {
            'x-application-type': 'miniapp',
@@ -75,7 +76,7 @@ def watchad(cookie):
     # print(res['errorCode'])
     return response.text
 
-def getcoin(cookie):
+def getcoin(cookie,useragent):
     url = "https://db-api.yzw.cn/appc/v1/activity/ad/index" 
     headers = {
          'x-application-type': 'miniapp',
@@ -86,7 +87,7 @@ def getcoin(cookie):
                 'x-device': '',
                 'x-device-id': '',
                 'x-application-package-name': '',
-                'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 MicroMessenger/6.8.0(0x16080000) NetType/WIFI MiniProgramEnv/Mac MacWechat/WMPF MacWechat/3.8.7(0x13080712) XWEB/1191',
+                'user-agent': useragent,
                 'Sec-Fetch-Site': 'cross-site',
                 'Sec-Fetch-Mode': 'cors',
                 'Sec-Fetch-Dest': 'empty',
@@ -107,7 +108,7 @@ def getcoin(cookie):
 
     return coinIncome
 
-def getmoney(cookie):
+def getmoney(cookie,useragent):
     url = "https://db-api.yzw.cn/appc/v1/activity/ad/my/income" 
     headers = {
          'x-application-type': 'miniapp',
@@ -118,7 +119,7 @@ def getmoney(cookie):
                 'x-device': '',
                 'x-device-id': '',
                 'x-application-package-name': '',
-                'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 MicroMessenger/6.8.0(0x16080000) NetType/WIFI MiniProgramEnv/Mac MacWechat/WMPF MacWechat/3.8.7(0x13080712) XWEB/1191',
+                'user-agent': useragent,
                 'Sec-Fetch-Site': 'cross-site',
                 'Sec-Fetch-Mode': 'cors',
                 'Sec-Fetch-Dest': 'empty',
@@ -139,7 +140,7 @@ def getmoney(cookie):
 
     return currentCashIncome
 
-def withdraw(cookie):
+def withdraw(cookie,useragent):
     url = "https://db-api.yzw.cn/appc/v1/activity/ad/withdraw" 
     headers = {
          'x-application-type': 'miniapp',
@@ -150,7 +151,7 @@ def withdraw(cookie):
                 'x-device': '',
                 'x-device-id': '',
                 'x-application-package-name': '',
-                'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 MicroMessenger/6.8.0(0x16080000) NetType/WIFI MiniProgramEnv/Mac MacWechat/WMPF MacWechat/3.8.7(0x13080712) XWEB/1191',
+                'user-agent': useragent,
                 'Sec-Fetch-Site': 'cross-site',
                 'Sec-Fetch-Mode': 'cors',
                 'Sec-Fetch-Dest': 'empty',
@@ -173,13 +174,13 @@ if __name__ == "__main__":
         mx_list = mx.split('@@')
         # print(mx_list)
         for num, mx_item in enumerate(mx_list, start=1):
-            id,cookie= mx_item.split('&')
+            id,cookie,useragent= mx_item.split('&')
             print(f"=====开始执行第{num}个账号任务=====")
             
             for _ in range(int(id)):
-              res += watchad(cookie)
+              res += watchad(cookie,useragent)
               time.sleep(35)
-            t=getmoney(cookie)
+            t=getmoney(cookie,useragent)
             print(f"余额:{t}")
 
             bool_value = True if yunzhupytixian == "True" else False
@@ -189,7 +190,7 @@ if __name__ == "__main__":
 
             if t>=1 and bool_value:
                 print("30天内满1元提现：")
-                withdraw(cookie)
+                withdraw(cookie,useragent)
 
     # if send:
     #     send("云筑工匠任务通知", res)
