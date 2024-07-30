@@ -1,7 +1,7 @@
 /**
  * cron: 28 9,21 * * *
  * export FengXin="账号1&密码1 账号2&密码2"
- * 3.2.2版本好像封了直接完成领取的bug
+ * 3.2.2版本add-task-rate-v3改为v4
  */
 const $ = new Env('丰信客户端')
 const FengXin = ($.isNode() ? process.env.FengXin : $.getdata("FengXin")) || '';
@@ -64,10 +64,10 @@ async function main() {
                 if (task.taskDetail == task.totalDetail) {
                     console.log('任务已完成')
                 } else {
-                    let add = await commonPost('/api/task/add-task-rate-v3',`taskDetail=${task.totalDetail - task.taskDetail}&taskCode=${task.taskCode}&finishType=0`)
+                    let add = await commonPost('/api/task/add-task-rate-v4',`taskDetail=${task.totalDetail - task.taskDetail}&taskCode=${task.taskCode}&finishType=0`)
                                 
                     if (add && add.status !== 400) {
-                        console.log('获得积分：' + (add.data && add.data.info ? add.data.info : '未知积分'));
+                        console.log('获得积分：' + JSON.stringify(add));
                     }else{
                         console.log('错误:' + JSON.stringify(add))
                     }
