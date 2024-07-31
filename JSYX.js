@@ -8,6 +8,7 @@
  * 青龙环境 在main()第一行后加入如下代码解密一下openId 然后在运行 自动解密的如surge可以无视
  * console.log(decrypt("xxxx=="))    《--不是填这
  * 最前面//是注释 要删掉
+ 或者用在线aes加密工具也行 https://tool.lmeee.com/jiami/aes 。。。key iv在17 18行 模式cbc 填充默认的 多试试怎么玩的
 原作者xzxxn
  */
 const $ = new Env('江苏有线-巴黎奥运会');
