@@ -5,8 +5,9 @@
 活动奖励：停车币可用于兑换停车券，比例 1000:1
 环境变量：jtc_userId（Node环境，多账号以@隔开）
 使用说明：添加重写规则并打开捷停车 APP 即可获取 userId 和 Token
-更新时间：2024-05-24
-
+更新时间：2024-07-31
+sytgate.jslife.com.cn body里面的token 领取浏览任务失败就是你token抓错了，单账户英文逗号分隔
+export jtc_userId="userId1,token1@userId2,token2"
 ================ Surge 配置 ================
 [MITM]
 hostname = %APPEND% sytgate.jslife.com.cn
@@ -47,7 +48,8 @@ const Notify = 1;  // 0 为关闭通知, 1 为打开通知, 默认为 1
 $.messages = [];  // 为通知准备的空数组
 
 // ---------------------- 自定义变量区域 ----------------------
-$.is_debug = ($.isNode() ? process.env.IS_DEDUG : $.getdata('is_debug')) || 'false';  // 调试模式
+// $.is_debug = ($.isNode() ? process.env.IS_DEDUG : $.getdata('is_debug')) || 'false';  // 调试模式
+$.is_debug ='true';  // 调试模式
 let userId = ($.isNode() ? process.env.jtc_userId : $.getdata(jtc_userId_key)) || '', userIdArr = [];
 let watchVideo = ($.isNode() ? process.env.jtc_video : $.getdata('jtc_video')) || 'false';  // 此功能有封号风险，默认禁用
 
