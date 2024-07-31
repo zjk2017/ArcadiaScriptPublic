@@ -3,9 +3,10 @@
  * export JSYX='[{"id": "1", "openId": "1"},{"id": "2", "openId": "2"}]'
  * 不是江苏用户 不是有线用户 不是南京的 都可以玩
  * 江苏有线南京分公司公众号里面有奥运会 使用完整服务时要关注另外一个公众号江苏有线营业厅
- * 抓https://www.js96296.com/dzyyt/ppc/dzyyt/wchat/marketingActivity/checkProIsLogin接口请求头的加密数据，其他接口加密请求头也可以 复制到xxxx==里面解密就会出现openid
- * 青龙环境 在main()第一行后加如下代码解密一下openId 然后在运行 自动解密的如surge可以无视
- * console.log(decrypt("xxxx==")) 
+ * 抓https://www.js96296.com/dzyyt/ppc/dzyyt/wchat/marketingActivity/checkProIsLogin接口的请求体（就是body）的数据（加密的 最后面的字符一般有两个等号），其他接口加密请求体也可以 
+ 加密的数据复制然后替换"xxxx==",解密就会出现打印openid，然后填到变量里（第一次不知道可以随便写openid，解密后再填正确的）
+ * 青龙环境 在main()第一行后加入如下代码解密一下openId 然后在运行 自动解密的如surge可以无视
+ * console.log(decrypt("xxxx=="))    《--不是填这
  * 最前面//是注释 要删掉
 原作者xzxxn
  */
@@ -27,7 +28,7 @@ let notice = '';
 })().catch((e) => {$.log(e)}).finally(() => {$.done({});});
 
 async function main() {
-    //  console.log(decrypt("xxxx==")) 
+    console.log(decrypt("xxxx==")) 
     console.log('作者：@xzxxn777\n频道：https://t.me/xzxxn777\n群组：https://t.me/xzxxn7777\n自用机场推荐：https://xn--diqv0fut7b.com\n')
     for (const item of JSYX) {
         id = item.id;
