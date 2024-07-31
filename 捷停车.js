@@ -8,6 +8,8 @@
 更新时间：2024-07-31
 sytgate.jslife.com.cn body里面的token 领取浏览任务失败就是你token抓错了，单账户英文逗号分隔
 export jtc_userId="userId1,token1@userId2,token2"
+增加了小程序的领取停车指南奖励 官方说是每日每日任务 貌似不是每日任务
+看视频需要反编译暂时没弄
 ================ Surge 配置 ================
 [MITM]
 hostname = %APPEND% sytgate.jslife.com.cn
@@ -48,11 +50,11 @@ const Notify = 1;  // 0 为关闭通知, 1 为打开通知, 默认为 1
 $.messages = [];  // 为通知准备的空数组
 
 // ---------------------- 自定义变量区域 ----------------------
-$.is_debug = ($.isNode() ? process.env.IS_DEDUG : $.getdata('is_debug')) || 'false';  // 调试模式
+ $.is_debug = ($.isNode() ? process.env.IS_DEDUG : $.getdata('is_debug')) || 'false';  // 调试模式
 //$.is_debug ='true';  // 调试模式
 let userId = ($.isNode() ? process.env.jtc_userId : $.getdata(jtc_userId_key)) || '', userIdArr = [];
 let watchVideo = ($.isNode() ? process.env.jtc_video : $.getdata('jtc_video')) || 'false';  // 此功能有封号风险，默认禁用
-
+let jtc_tczn = ($.isNode() ? process.env.jtc_tczn : $.getdata('jtc_tczn')) || 'false'; //好像只有三次 1天就完成了 运行1次后关闭它
 // 统一管理 api 接口
 const Api = {
   // 领取奖励
@@ -71,6 +73,7 @@ const Api = {
   "adToken": {
     "url": "/base-gateway/integral/v2/task/token",
   }
+
 }
 
 // 主执行程序
@@ -109,10 +112,10 @@ async function main() {
     $.integralValue = 0;
     $.userId = userIdArr[i].split(',')[0];
     $.token = userIdArr[i].split(',')[1];
-    $.taskMap = { "T00": "签到", "T01": "浏览", "T02": "看视频" };
+    $.taskMap = { "T00": "签到", "T01": "浏览", "T02": "看视频", "T16": "小程序停车指南" };
 
-    // 领取浏览任务
-    await browse();
+
+
 
     // 看视频任务
     // watchVideo == 'true' && $.token && await videos();
@@ -120,9 +123,22 @@ async function main() {
     // 领取签到奖励
     await receive("T00");
 
+
+
+    // 领取浏览任务
+    await browse();
+    await $.wait(1000 * 10);
     // 领取浏览奖励
     $.taskMap['T01'] && await receive("T01");
-
+    if (jtc_tczn == 'true'){
+        for (let i = 0; i < 3; i++) {
+            // 领取停车指南的浏览任务
+            await browsetingchezhinan();
+            await $.wait(1000 * 10);
+            // 领取停车指南奖励
+            $.taskMap['T16'] && await receivexcx("T16");
+        }
+    }
     // 打印结果
     console.log($.result);
 
@@ -176,6 +192,19 @@ async function receive(taskNo) {
   }
 }
 
+
+// 提交任务 小程序停车指南任务
+async function receivexcx(taskNo) {
+  let result = await httpRequest(options(Api.receive.url, `{"userId":"${$.userId}","reqSource":"APP_JTC","taskNo":"${taskNo}","reqSource":"WX_XCX_JTC","platformType":"WX_XCX_JTC","osType":"IOS","token":"${$.token}"}`));
+  debug(result, "receivexcx");
+  if (result.success) {
+    $.result += `${$.taskMap[taskNo]} 任务完成, 获得 ${result.data} 停车币\n`;
+  } else {
+    $.result += `${result.message} \n`;
+  }
+}
+
+
 // 浏览
 async function browse() {
   let result = await httpRequest(options(Api.complete.url, `{"userId":"${$.userId}","reqSource":"APP_JTC","taskNo":"T01","token":"${$.token}"}`));
@@ -186,32 +215,94 @@ async function browse() {
   }
 }
 
+// 浏览停车指南
+async function browsetingchezhinan() {
+  let result = await httpRequest(options(Api.complete.url, `{"userId":"${$.userId}","reqSource":"APP_JTC","taskNo":"T16","receiveTag":false,"reqSource":"WX_XCX_JTC","platformType":"WX_XCX_JTC","osType":"IOS","token":"${$.token}"}`));
+
+  debug(result, "browsetingchezhinan");
+  if (!result.success) {
+    console.log(`❌ 领取${$.taskMap['T16']}任务失败: ${result.message}`);
+    delete $.taskMap['T01'];
+  }
+}
+
+function sleepRandomly(minSeconds, maxSeconds, callback) {
+    // 计算随机等待时间（毫秒）
+    const randomWaitTime = Math.floor(Math.random() * (maxSeconds - minSeconds + 1)) + minSeconds;
+    const waitTimeMillis = randomWaitTime * 1000;
+
+    // 使用setTimeout设置延迟
+    setTimeout(() => {
+        callback();
+    }, waitTimeMillis);
+}
+        // 使用示例
+        // sleepRandomly(43, 50, () => {
+        //     console.log('执行了下一行代码');
+        // });
 // 看视频
+// async function videos() {
+//   // 获取 adToken
+//   let res = await httpRequest(options(Api.adToken.url, `{"adTime":"600","userId":"${$.userId}","taskNo":"T02","token":"${$.token}","timestamp":"${Date.now()}"}`));
+//   debug(res, "getAdToken");
+//   if (res.success) {
+//     let = adToken = res['data']['token'];
+//      console.log(adToken);
+//     let videosCoins = 0;  // 看视频奖励数
+//     // 领取奖励(每日50次)
+//     for (let i = 1; i <= 50; i++) {
+
+//       let result = await httpRequest(options(Api.complete.url, `{"timestamp":"${Date.now()}","taskNo":"T02","reqSource":"APP_JTC","receiveTag":"true","userId":"${$.userId}","token":"${$.token}","adToken":"${adToken}"}`));
+//       debug(result, "videos");
+//       if (result.success) {
+//         videosCoins += result['data']['integralValue'];
+//         console.log(`✅ 完成看视频任务，获得 ${result['data']['integralValue']} 停车币`);
+//       } else {
+//         console.log(`❌ 看视频任务失败: `, result);
+//         break;
+//       }
+//     }
+//     videosCoins && ($.result += `${$.taskMap['T02']} 任务完成, 获得 ${videosCoins} 停车币\n`);
+//   } else {
+//     console.log(`❌ 领取${$.taskMap['T02']}任务失败: ${res.message}`);
+//   }
+// }
 async function videos() {
   // 获取 adToken
   let res = await httpRequest(options(Api.adToken.url, `{"adTime":"600","userId":"${$.userId}","taskNo":"T02","token":"${$.token}","timestamp":"${Date.now()}"}`));
   debug(res, "getAdToken");
   if (res.success) {
-    let = adToken = res['data']['token'];
-    let videosCoins = 0;  // 看视频奖励数
+    let adToken = res.data.token;
+    console.log(adToken);
+    let videosCoins = 0; // 看视频奖励数
     // 领取奖励(每日50次)
     for (let i = 1; i <= 50; i++) {
+      // 等待随机时间（45到50秒）
+      const waitTime = Math.floor(Math.random() * (50 - 45 + 1)) + 45; // 生成45到50之间的随机数
+      await new Promise(resolve => setTimeout(resolve, waitTime * 1000)); // 转换为毫秒并等待
+// {"timestamp":"17.。。","taskNo":"T02","reqSource":"APP_JTC","receiveTag":"true","applictionVersion":"60206","nonce":"2D。。。","userId":"。。。",
+// "token":"ey..",
+// "applictionType":"APP","signType":"MD5",
+// "adToken":"..",
+// "sign":"x"}
+
       let result = await httpRequest(options(Api.complete.url, `{"timestamp":"${Date.now()}","taskNo":"T02","reqSource":"APP_JTC","receiveTag":"true","userId":"${$.userId}","token":"${$.token}","adToken":"${adToken}"}`));
       debug(result, "videos");
       if (result.success) {
-        videosCoins += result['data']['integralValue'];
-        console.log(`✅ 完成看视频任务，获得 ${result['data']['integralValue']} 停车币`);
+        videosCoins += result.data.integralValue;
+        console.log(`✅ 完成看视频任务，获得 ${result.data.integralValue} 停车币`);
       } else {
         console.log(`❌ 看视频任务失败: `, result);
-        break;
+        break; // 如果任务失败，则退出循环
       }
     }
-    videosCoins && ($.result += `${$.taskMap['T02']} 任务完成, 获得 ${videosCoins} 停车币\n`);
+    if (videosCoins > 0) {
+      $.result += `${$.taskMap['T02']} 任务完成, 获得 ${videosCoins} 停车币\n`;
+    }
   } else {
     console.log(`❌ 领取${$.taskMap['T02']}任务失败: ${res.message}`);
   }
 }
-
 
 // 用户信息
 async function getUserInfo() {
