@@ -29,7 +29,7 @@ let notice = '';
 })().catch((e) => {$.log(e)}).finally(() => {$.done({});});
 
 async function main() {
-    console.log(decrypt("xxxx==")) 
+ console.log(decrypt("xxxx==")
     console.log('作者：@xzxxn777\n频道：https://t.me/xzxxn777\n群组：https://t.me/xzxxn7777\n自用机场推荐：https://xn--diqv0fut7b.com\n')
     for (const item of JSYX) {
         id = item.id;
@@ -173,7 +173,7 @@ async function lotteryPost(url,body = {}) {
                 'Accept-Encoding': 'gzip, deflate, br',
                 'Accept-Language': 'zh-CN,zh;q=0.9'
             },
-            body: JSON.stringify(body),
+            body: encrypt(body)
         }
         $.post(options, async (err, resp, data) => {
             try {
@@ -182,7 +182,7 @@ async function lotteryPost(url,body = {}) {
                     console.log(`${$.name} API请求失败，请检查网路重试`)
                 } else {
                     await $.wait(2000);
-                    resolve(JSON.parse(data));
+                    resolve(decrypt(data));
                 }
             } catch (e) {
                 $.logErr(e, resp)
