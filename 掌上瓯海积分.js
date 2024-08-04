@@ -1,4 +1,35 @@
-
+/**
+ * 掌上瓯海v2.0
+ * 执行时间： 25 10,16 * * *  掌上瓯海.js
+ * const $ = new Env("掌上瓯海");
+ * 注册地址：
+ * ========= 青龙--配置文件 ===========
+ * # 掌上瓯海（配置方式二选一）
+ * 方式一：账号密码自动登录("&"符号链接也可以，但不推荐)
+ * export zsoh='账号#密码'
+ * 方式二：抓包协议头里的 X-SESSION-ID 和 X-ACCOUNT-ID
+ * （“兼容老版本，如果老版本的配置 【X-ACCOUNT-ID&X-SESSIONID】这种，请增加设置 export zsohOldConfigTranform='true'”）
+ * export zsoh='sessionId#accountId'
+ * 是否启用文章评论开关（注，估计这个操作容易封）
+ * export zsohEnabledPostComment="false" // 默认为false，代表关闭文章评论功能，如果需要开启请改为 true 或者 1
+ * 是否启用论坛发帖开关（注，估计这个操作容易封）
+ * export zsohEnabledForumPost="false" // 默认为false，代表关闭论坛发帖功能，如果需要开启请改为 true 或者 1
+ * 文章评论是否使用一言随机返回的名人名句
+ * export zsohEnabledPostCommentBy1Y="false" // 默认为false，代表关闭使用一言的随机评论，如果需要开启请改为 true 或者 1
+ * 是否强制点赞、分享，不开启相关判断逻辑
+ * export zsohForceLikeAndShare="false" // 默认为false，代表关闭根据返回的数据判断是否分享或者点赞，如果就是要尝试分享或者点赞请改为 true 或者 1
+ * 多账号用 换行 或 @ 分割
+ * ====================================
+ * 注： 如果没填邀请码会吃个邀请助力，如果介意，请删除该脚本，谢谢配合
+ * ====================================
+ * TodoList - 待更新内容：
+ * 1. 支持环境变量多账号
+ * 2. 支持部分APP的星社区任务
+ * 3. 支持自动兑换抢购商品
+ * 4. 支持配置不同账号对应不同的UA
+ * 5. 支持代理IP
+ * ====================================
+ */
 const _0x17c57d = new _0x1724be("掌上瓯海");
 _0x17cd75();
 const _0x1733fb = "zsoh",
