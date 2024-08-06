@@ -17,7 +17,7 @@
 
  * 奖励：签到转发得积分，一天大概五分，自动刷新token，小毛
  * fix 20240724rcadiaScriptPublic  频道：https://t.me/ArcadiaScript 群组：https://t.me/ArcadiaScriptPublic
- * 抓包搜索 /refreshApiToken 返回的 refresh_token 小程序即可 定时每个小时
+ * 抓包搜索 /refreshApiToken 返回的 refresh_token  定时每个小时 小程序即可有时候转不到就app 有时候当天还抓不到得第二天 在抓不到就试试老的抓包关键词
  * https://api.chehezhi.cn/customer/account/info/refreshApiToken
  * 只有签到了 转发抽奖没了
  * ====================================
@@ -102,9 +102,16 @@ class _0x54b1b5 {
           this.refreshToken = _0x4f7561?.["data"]?.["refresh_token"];
           this.activedAuthToken = _0x4f7561?.["data"]?.["access_token"];
           try {
-            const _0x48a2fb = JSON.parse(atob(this.activedAuthToken?.["split"](".")[1])),
-              _0x566b37 = new Date(Number(_0x48a2fb?.["exp"] + "000"))?.["getMonth"]() + 1 + "月" + new Date(Number(_0x48a2fb?.["exp"] + "000"))?.["getDate"]() + "日" + (new Date(Number(_0x48a2fb?.["exp"] + "000"))?.["getHours"]() + ":" + new Date(Number(_0x48a2fb?.["exp"] + "000"))?.["getMinutes"]() + ":00过期");
-            _0x2e1682.logAndNotify("账号[" + this.index + "] 刷新登录状态成功 " + _0x566b37);
+            const _0x48a2fb = JSON.parse(atob(this.activedAuthToken?.["split"](".")[1]))
+            // ,
+            //   _0x566b37 = new Date(Number(_0x48a2fb?.["exp"] + "000"))?.["getMonth"]() + 1 + "月" + new Date(Number(_0x48a2fb?.["exp"] + "000"))?.["getDate"]() + "日" + (new Date(Number(_0x48a2fb?.["exp"] + "000"))?.["getHours"]() + ":" + new Date(Number(_0x48a2fb?.["exp"] + "000"))?.["getMinutes"]() + ":00过期");
+             // 将秒级时间戳转换为毫秒级时间戳
+            let timestampInMilliseconds = (_0x48a2fb?.["exp"]) * 1000;
+            let date = new Date(timestampInMilliseconds);
+            let formattedDate = this.formatDate(date);
+
+            // _0x2e1682.logAndNotify("账号[" + this.index + "] 刷新登录状态成功 " + _0x566b37);
+            _0x2e1682.logAndNotify("账号[" + this.index + "] 刷新登录状态成功 " + formattedDate+"过期");
           } catch (_0x309b98) {
             _0x2e1682.logAndNotify("账号[" + this.index + "] 刷新登录状态成功");
           }
@@ -121,6 +128,16 @@ class _0x54b1b5 {
       console.log(_0x18d574);
     }
   }
+//   自定义格式化函数
+  formatDate(date) {
+  let year = date.getFullYear();
+  let month = String(date.getMonth() + 1).padStart(2, '0'); // 月份是从0开始的
+  let day = String(date.getDate()).padStart(2, '0');
+  let hours = String(date.getHours()).padStart(2, '0');
+  let minutes = String(date.getMinutes()).padStart(2, '0');
+  let seconds = String(date.getSeconds()).padStart(2, '0');
+  return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+}
   async ["GetUserInfo"]() {
     try {
       let _0x2f904a = "GetUserInfo",
