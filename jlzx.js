@@ -3,7 +3,7 @@
 江铃智行 app               
 cron: 22 8,19 * * *
 
-5.27      就一个签到 随缘玩吧  服务器闲着也是闲着
+2024.8.8      就一个签到 随缘玩吧  服务器闲着也是闲着
 
 ------------------------  青龙--配置文件-贴心复制区域  ---------------------- 
 抓取superapp.jmc.com.cn中的Access-Token 
@@ -13,7 +13,7 @@ export jlzx="Access-Token  "
 多账号用 换行 或 @ 分割
 一天1~5分  挂一年能换点东西
 ======================================================================================================================================
-20240714 ArcadiaScriptPublic  频道：https://t.me/ArcadiaScript 群组：https://t.me/ArcadiaScriptPublic 拉库https://github.com/zjk2017/ArcadiaScriptPublic
+20240808 ArcadiaScriptPublic  频道：https://t.me/ArcadiaScript 群组：https://t.me/ArcadiaScriptPublic 拉库https://github.com/zjk2017/ArcadiaScriptPublic
 注释掉一言报错 签到前后打印总积分 看到底签到了没有
 ======================================================================================================================================
 */
@@ -86,7 +86,7 @@ class UserInfo {
                 "Access-Token": `${this.ck}`,
                 "Content-Type": "application/json"
             },
-            body: `{"activityCode":"HD202401010007"}`
+            body: `{"activityCode":"HD202408060001"}`
         };
         //  console.log(options);
         let res = await httpRequest(options);
