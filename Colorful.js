@@ -232,9 +232,9 @@ async function getCookie() {
 async function commonPost(url, body = {}) {
     return new Promise(resolve => {
         const options = {
-            url: `https://shopapi.skycolorful.com/api${url}`,
+            url: `https://llsminterface.skycolorful.com/api${url}`,
             headers: {
-                'Host': 'shopapi.skycolorful.com',
+                'Host': 'llsminterface.skycolorful.com',
                 'Connection': 'keep-alive',
                 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36 MicroMessenger/7.0.20.1781(0x6700143B) NetType/WIFI MiniProgramEnv/Windows WindowsWechat/WMPF WindowsWechat(0x63090b13)XWEB/9185',
                 'Accept': '*/*',
@@ -287,9 +287,9 @@ async function commonPost(url, body = {}) {
 async function commonGet(url) {
     return new Promise(resolve => {
         const options = {
-            url: `https://shopapi.skycolorful.com/api${url}`,
+            url: `https://llsminterface.skycolorful.com/api${url}`,
             headers: {
-                'Host': 'shopapi.skycolorful.com',
+                'Host': 'llsminterface.skycolorful.com',
                 'Connection': 'keep-alive',
                 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36 MicroMessenger/7.0.20.1781(0x6700143B) NetType/WIFI MiniProgramEnv/Windows WindowsWechat/WMPF WindowsWechat(0x63090b13)XWEB/9185',
                 'Accept': '*/*',
