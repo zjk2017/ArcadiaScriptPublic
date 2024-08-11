@@ -177,6 +177,7 @@ async function pkLoginPost(url,body) {
             headers : {
                 'content-type': 'application/json;charset=utf-8',
                 'channel': '1',
+                 'user-agent': `${ua}`,
                 'Accept-Encoding': 'gzip',
             },
             body: JSON.stringify(body)
