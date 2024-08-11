@@ -3,11 +3,14 @@
  * cron "19 8,19 * * *" Colorful.js
  * export COLORFUL='[{"id": "1", "token": "Authorization","refreshToken:"xxxX-Authorization"},{"id": "2", "token": "Authorization","refreshToken:"xxxX-Authorization"}]'
  * export COLORFUL_RAFFLE='true' //开启抽奖
+ * export COLORFUL_HOST='shopapitest.skycolorful.com' //host
  */
 const $ = new Env('七彩虹商城')
 
 const COLORFUL = ($.isNode() ? (process.env.COLORFUL ? JSON.parse(process.env.COLORFUL) : undefined) : $.getjson("COLORFUL")) || [],
-    COLORFUL_RAFFLE = ($.isNode() ? process.env.COLORFUL_RAFFLE : $.getjson("COLORFUL_RAFFLE")) || false;
+    COLORFUL_RAFFLE = ($.isNode() ? process.env.COLORFUL_RAFFLE : $.getjson("COLORFUL_RAFFLE")) || false,
+    COLORFUL_HOST = ($.isNode() ? process.env.COLORFUL_HOST : $.getjson("COLORFUL_HOST")) || 'shopapitest.skycolorful.com'
+    ;
 let token = '', refreshToken = ''
 let notice = ''
 !(async () => {
@@ -25,13 +28,15 @@ let notice = ''
 
 async function main() {
 
-    console.log('作者：@xzxxn777\n频道：https://t.me/xzxxn777\n群组：https://t.me/xzxxn7777\n自用机场推荐：https://xn--diqv0fut7b.com\n')
+    // console.log('作者：@xzxxn777\n频道：https://t.me/xzxxn777\n群组：https://t.me/xzxxn7777\n自用机场推荐：https://xn--diqv0fut7b.com\n')
     for (const item of COLORFUL) {
         id = item.id;
         token = item.token;
         refreshToken = item.refreshToken
+        host = COLORFUL_HOST
         let refreshLogin= await commonPost('/User/RefreshLoginTime',{"phone":""})
-         console.log(`Code${JSON.stringify(refreshLogin).Code}`)
+        console.log(`refreshLogin:${JSON.stringify(refreshLogin)}`)
+        // console.log(`Code:${JSON.stringify(refreshLogin).Code}`)
         if (JSON.stringify(refreshLogin).Code == 401) {
             if (!item.body){
                 await sendMsg(`用户：${id}\ntoken已过期，请重新获取`);
@@ -50,6 +55,8 @@ async function main() {
         let userInfo = await commonGet('/User/GetUserInfo')
         console.log(`用户：${id}开始任务`)
         let taskPoint = await commonGet('/Sys/GetPointConfig')
+        // console.log(`taskPoint:${JSON.stringify(taskPoint)}`)
+
         if (taskPoint.Code === 401) {
             await sendMsg(`用户：${id}\ntoken已过期，请重新获取`);
             continue
@@ -232,9 +239,11 @@ async function getCookie() {
 async function commonPost(url, body = {}) {
     return new Promise(resolve => {
         const options = {
-            url: `https://llsminterface.skycolorful.com/api${url}`,
+            // url: `https://llsminterface.skycolorful.com/api${url}`,
+            url: `https://${host}/api${url}`,
             headers: {
-                'Host': 'llsminterface.skycolorful.com',
+                // 'Host': 'llsminterface.skycolorful.com',
+                'Host': `${host}`,
                 'Connection': 'keep-alive',
                 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36 MicroMessenger/7.0.20.1781(0x6700143B) NetType/WIFI MiniProgramEnv/Windows WindowsWechat/WMPF WindowsWechat(0x63090b13)XWEB/9185',
                 'Accept': '*/*',
@@ -287,9 +296,11 @@ async function commonPost(url, body = {}) {
 async function commonGet(url) {
     return new Promise(resolve => {
         const options = {
-            url: `https://llsminterface.skycolorful.com/api${url}`,
+            // url: `https://llsminterface.skycolorful.com/api${url}`,
+            url: `https://${host}/api${url}`,
             headers: {
-                'Host': 'llsminterface.skycolorful.com',
+                // 'Host': 'llsminterface.skycolorful.com',
+                'Host': `${host}`,
                 'Connection': 'keep-alive',
                 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36 MicroMessenger/7.0.20.1781(0x6700143B) NetType/WIFI MiniProgramEnv/Windows WindowsWechat/WMPF WindowsWechat(0x63090b13)XWEB/9185',
                 'Accept': '*/*',
