@@ -207,4 +207,4 @@ def main():
 if __name__ == '__main__':
     initialize.init()  # 日志格式化输出
     main()
-    initialize.send_notify("百度贴吧签到")  # 发送通知
+    # initialize.send_notify("百度贴吧签到")  # 发送通知
