@@ -221,4 +221,4 @@ def main():
 if __name__ == '__main__':
     initialize.init()  # 初始化日志系统
     main()
-    initialize.send_notify("天翼网盘")  # 发送通知
+    # initialize.send_notify("天翼网盘")  # 发送通知
