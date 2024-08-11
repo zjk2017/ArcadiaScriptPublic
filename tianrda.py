@@ -21,7 +21,7 @@ fix 20240625 ArcadiaScriptPublic  频道：https://t.me/ArcadiaScript 群组：h
 
 
 pl = 1#0为关闭评论
-notify = True#0为关闭通知
+notify = 0#0为关闭通知 True
 
 ver = sys.version.split(" ")[0].split(".")
 if int(ver[1]) != 11:
