@@ -1,6 +1,7 @@
 /**
  * cron "39 11,19 * * *" FTEJ.js
- * export FTEJ="账号1&密码1&ua # 账号2&密码2&ua"
+ * export FTEJ="账号1&密码1&ua&device_id&deviceSystem&device_model # 账号2&密码2&ua&device_id&deviceSystem&device_model" 
+ * 解决异地短信问题 多账号分割符号#你可以自己改
  */
 const $ = new Env('福田e家')
 const FTEJ = ($.isNode() ? process.env.FTEJ : $.getdata("FTEJ")) || '';
@@ -24,6 +25,9 @@ async function main() {
         phone = item.split("&")[0]
         password = item.split("&")[1]
         ua = item.split("&")[2]
+        device_id= item.split("&")[3]
+        deviceSystem= item.split("&")[4]
+        device_model= item.split("&")[5]
         console.log(`用户：${phone}开始任务`)
         console.log('皮卡生活登录')
         let pkLogin = await pkLoginPost('/ehomes-new/pkHome/api/user/getLoginMember2nd', {"memberId":"","memberID":"","mobile":"","token":"7fe186bb15ff4426ae84f300f05d9c8d","vin":"","safeEnc":Date.now()-10110000,"name":phone,"password":password,"position":"","deviceId":"","deviceBrand":"","brandName":"","deviceType":"0","versionCode":"21","versionName":"V1.1.10"})
@@ -62,7 +66,23 @@ async function main() {
         // }
         console.log("————————————")
         console.log('福田e家登录')
-        let login = await loginPost('/ehomes-new/homeManager/getLoginMember', {"password":password,"version_name":"7.3.23","version_auth":"","device_id":"","device_model":"","ip":"","name":phone,"version_code":"316","deviceSystemVersion":"11","device_type":"0"})
+        let login = await loginPost('/ehomes-new/homeManager/getLoginMember', 
+        // {"password":password,"version_name":"7.3.23","version_auth":"","device_id":"","device_model":"","ip":"","name":phone,"version_code":"316","deviceSystemVersion":"11","device_type":"0"}
+            {
+            "version_name" : "",
+            "checkCode" : "",
+            "redisCheckCodeKey" : "",
+            "deviceSystem" : deviceSystem,
+            "version_auth" : "",
+            "device_type" : "0",
+            "password" : password,
+            "ip" : "127.0.0.1",
+            "device_id" : device_id,
+            "version_code" : "0",
+            "name" : phone,
+            "device_model" : device_model
+            }
+        )
         if (login.code != 200) {
             console.log(login.msg)
             continue
@@ -80,7 +100,8 @@ async function main() {
         }
         console.log("————————————")
         console.log("开始任务")
-        let taskList = await commonPost('/ehomes-new/homeManager/api/Member/getTaskList', {"memberId":memberId,"userId":uid,"userType":"61","uid":uid,"mobile":phone,"tel":phone,"phone":phone,"brandName":"","seriesName":"","token":"ebf76685e48d4e14a9de6fccc76483e3","safeEnc":Date.now()-20220000,"businessId":1})
+        let taskList = await commonPost('/ehomes-new/homeManager/api/Member/getTaskList',
+         {"memberId":memberId,"userId":uid,"userType":"61","uid":uid,"mobile":phone,"tel":phone,"phone":phone,"brandName":"","seriesName":"","token":"ebf76685e48d4e14a9de6fccc76483e3","safeEnc":Date.now()-20220000,"businessId":1})
         for (const task of taskList.data) {
             console.log(`任务：${task.ruleName}`)
             if (task.isComplete == "1") {
