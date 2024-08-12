@@ -14,7 +14,13 @@ ql repo http://gh.tt.ma/https://github.com/zjk2017/ArcadiaScriptPublic.git "" ne
 ![img](https://profile-counter.glitch.me/zjk2017/count.svg)
 
 
-![](https://komarev.com/ghpvc/?username=zjk2017)
+版本镜像:
+
+正式版: whyour/qinglong:latest
+Python3.10 正式版: whyour/qinglong:python3.10
+debian 版: whyour/qinglong:debian
+Python3.10 debian 版: whyour/qinglong:debian-python3.10
+npm 版本: npm i -g @whyour/qinglong
 
 
 <a href="https://info.flagcounter.com/ZNjl"><img src="https://s11.flagcounter.com/map/ZNjl/size_m/txt_000000/border_CCCCCC/pageviews_1/viewers_3/flags_0/" alt="Flag Counter" border="0"></a>
