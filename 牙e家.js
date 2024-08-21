@@ -3,7 +3,7 @@ APP：牙e家
 设置密码
 export yayihd='手机号&密码'
 多号@或换行隔开
-10话费
+
 cron: 8 9,14 * * *
 
 
@@ -11,6 +11,7 @@ cron: 8 9,14 * * *
 
 fix 20240625 ArcadiaScriptPublic  频道：https://t.me/ArcadiaScript 群组：https://t.me/ArcadiaScriptPublic
 更新cron
+没啥用
 */
 
 const $ = new Env('牙e家');
@@ -59,26 +60,29 @@ var timestamp = Math.round(new Date().getTime()).toString();
                 pass = yayihd.split('&')[1]
                 phones = yayihd.split('&')[0]
                 await Userlogin(pass,phones)
-                log(encodeURIComponent(authcode))
-                await req('Signlist/openapp')
+                // log(encodeURIComponent(authcode))
 
+                log("打开app")  
+                await req('Signlist/openapp')
                 log(data)  
+                log("分享。。。。")  
                 await req('Signlist/toshare')
                 log(data)
                 await req('Signlist/toshare')
                 log(data) 
                 await req('Signlist/toshare')
                 log(data)   
-                await req1('Hotrecommendlist/torecommend','4879')
-                log(data)
-                await req1('Hotrecommendlist/torecommend','4878')
-                log(data)
-                await req1('Hotrecommendlist/torecommend','4877')
-                log(data)
-                await req1('Hotrecommendlist/torecommend','4876')
-                log(data)
-                await req1('Hotrecommendlist/torecommend','4875')
-                log(data)                
+                // log("评论。。。。")  
+                // await req1('Hotrecommendlist/torecommend','4879')
+                // log(data)
+                // await req1('Hotrecommendlist/torecommend','4878')
+                // log(data)
+                // await req1('Hotrecommendlist/torecommend','4877')
+                // log(data)
+                // await req1('Hotrecommendlist/torecommend','4876')
+                // log(data)
+                // await req1('Hotrecommendlist/torecommend','4875')
+                // log(data)                
             }
             //await SendMsg(msg);
         }
