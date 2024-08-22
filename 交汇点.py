@@ -169,7 +169,8 @@ class JHD():
             response1.raise_for_status()
             response_json1 = response1.json()
         except requests.exceptions.RequestException as e:
-            print(f'请求focusByColumn接口失败: {e}')
+            # print(f'请求focusByColumn接口失败: {e}')
+            print(f'请求focusByColumn接口失败')
             return
 
         url2 = 'https://jhd.xhby.net/interaction/api/v1/interaction/article-extnums/login/addClick'
@@ -186,7 +187,8 @@ class JHD():
             response2.raise_for_status()
             response_json2 = response2.json()
         except requests.exceptions.RequestException as e:
-            print(f'请求文章click接口失败: {e}')
+            # print(f'请求文章click接口失败: {e}')
+            print(f'请求文章click接口失败')
             return
 
         if response_json["code"] == 0 and response_json1["code"] == 400700004 and response_json2["code"] == 0:
@@ -473,7 +475,8 @@ class JHD():
             response.raise_for_status()  # 检查响应状态码是否表示错误
             response_json = response.json()
         except requests.exceptions.RequestException as e:
-            print(f'请求文章详情失败: {e}')
+            # print(f'请求文章详情失败: {e}')
+            print(f'请求文章详情失败')
             return
 
         json_data = {
@@ -485,7 +488,8 @@ class JHD():
             response1.raise_for_status()
             response_json1 = response1.json()
         except requests.exceptions.RequestException as e:
-            print(f'请求focusByColumn接口失败: {e}')
+            # print(f'请求focusByColumn接口失败: {e}')
+            print(f'请求focusByColumn接口失败')
             return
 
         url2 = 'https://jhd.xhby.net/interaction/api/v1/interaction/article-extnums/login/addClick'
@@ -502,7 +506,8 @@ class JHD():
             response2.raise_for_status()
             response_json2 = response2.json()
         except requests.exceptions.RequestException as e:
-            print(f'请求文章click接口失败: {e}')
+            # print(f'请求click接口失败: {e}')
+            print(f'请求click接口失败')
             return
 
         if response_json["code"] == 0 and response_json1["code"] == 400700004 and response_json2["code"] == 0:
