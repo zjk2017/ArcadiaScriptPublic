@@ -4,9 +4,8 @@
 抓任意包请求头 Authorization
 变量名: JHD
 部分报错不影响后续执行 偶尔报错正常
-cron: 3 7,12,18 * * *
+cron: 39 7 * * *
 const $ = new Env("交汇点");
-原作者 xiaobu689
 """
 import os
 import random
@@ -72,8 +71,15 @@ class JHD():
         question = ''
         date_ = time.strftime("%Y-%m-%d", time.localtime())
         url = f'https://jhd.xhby.net/activity/api/v1/story/exam-topic-infos/{date_}'
-        response = requests.get(url, headers=self.headers)
-        response_json = response.json()
+        
+        try:
+            response = requests.get(url, headers=self.headers)
+            response.raise_for_status()
+            response_json = response.json()
+        except requests.exceptions.RequestException as e:
+            print(f'请求daily_question接口失败: {e}')
+            # time.sleep(120)  # 延迟120秒，‌即2分钟
+            # self.daily_question()  # 递归调用一次，‌重新尝试
         if response_json['code'] == 0:
             uuid = response_json["data"]["uuid"]
             examId = response_json["data"]["examId"]
