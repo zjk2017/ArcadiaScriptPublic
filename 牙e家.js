@@ -204,18 +204,18 @@ async function req(api) {
                     log(`\n\n【debug】===============这是 返回data==============`);
                     log(data)
                 }
-                if (data.result == 0) {
+                // if (data.result == 0) {
 
-                } else 
-                    log(data)
+                // } else 
+                //     log(data)
 
                     
                 
             } catch (e) {
-                log(`异常：${data}，原因：${data.message}`)
+                // log(`异常：${data}，原因：${data.message}`)
             }
         }).catch(function(error) {
-            console.error(error);
+            // console.error(error);
         }).then(res => {
             //这里处理正确返回
             resolve();
