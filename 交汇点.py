@@ -11,19 +11,6 @@ import os
 import random
 import re
 import time
-import requests"""
-交汇点
-
-抓任意包请求头 Authorization
-变量名: JHD
-部分报错不影响后续执行 偶尔报错正常
-cron: 39 7 * * *
-const $ = new Env("交汇点");
-"""
-import os
-import random
-import re
-import time
 import requests
 from urllib3.exceptions import InsecureRequestWarning, InsecurePlatformWarning
 from common import save_result_to_file
