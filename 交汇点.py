@@ -4,8 +4,9 @@
 抓任意包请求头 Authorization
 变量名: JHD
 部分报错不影响后续执行 偶尔报错正常
-cron: 39 7 * * *
+cron: 3 7,12,18 * * *
 const $ = new Env("交汇点");
+原作者 xiaobu689
 """
 import os
 import random
