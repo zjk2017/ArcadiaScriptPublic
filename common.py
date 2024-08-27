@@ -8,7 +8,7 @@ import time
 import base64
 import hashlib
 from http import HTTPStatus
-# 建议dashscope SDK 的版本 >= 1.14.0
+# 建议dashscope SDK 的版本 >= 1.14
 # from dashscope import Generation
 import dashscope
 
