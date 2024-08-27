@@ -7,6 +7,11 @@ import re
 import time
 import base64
 import hashlib
+from http import HTTPStatus
+# 建议dashscope SDK 的版本 >= 1.14.0
+# from dashscope import Generation
+import dashscope
+
 from urllib3.exceptions import InsecureRequestWarning, InsecurePlatformWarning
 requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 requests.packages.urllib3.disable_warnings(InsecurePlatformWarning)
@@ -40,6 +45,7 @@ def qianwen_messages(basic_question, question):
             seed=random.randint(1, 10000),
             result_format='message',
         )
+        # print(f"response: {response}")
         if response.status_code == HTTPStatus.OK:
             content = response['output']['choices'][0]['message']['content']
         else:
@@ -321,3 +327,9 @@ def generate_nanosecond_timestamp():
     nanoseconds = int(current_time_seconds * 1e9)
 
     return nanoseconds
+
+# if __name__ == '__main__':
+#     basic_news_question = '我需要你针对下面的文章，从一个民众的角度进行评论，我希望你的输出只有评论内容，没有别的无关紧要的词语，回复格式是：芝麻开门#你的评论#， 评论语气要尽可能生活化、日常化，字数一定要限制在5-15字之间，下面是我需要你发表评论的文章内容：'
+#     content_text = '新发和输入的传染病给公共卫生安全带来挑战，其中不少疾病传染性强，还有较高的致死率。因此，我们要保持警惕，今天就来学习“防控宝典”！。图片来源：摄图网近年来，除了埃博拉病毒、新型布尼亚病毒等“新面孔”，一些从境外输入的传染病比如登革热、黄热病、中东呼吸综合征也随着国际旅游和贸易，悄悄地“潜入”国内，给我们的公共卫生安全带来威胁。面对那些“新来”或“偷偷溜进来”的传染病，我们要打起精神守护自己和身边人的健康。首先，关注那些传染病的最新动态，如果打算出国旅游或工作，也要提前了解当地的传染病动向，提前做好准备，不给它们可乘之机。其次，日常生活中要做好防护。饭前便后、外出回家后要记得洗手，不随意用手触碰眼睛和口鼻，公共场所注意保持社交距离，必要时应佩戴口罩。再者，保持良好作息、积极锻炼身体，有助提高免疫力，这也是预防传染病的关键环节。最后，除了注重身体健康，还要保持积极乐观的心态，相信科学、相信专业的医护人员。'
+#     message = qianwen_messages(basic_news_question, content_text)
+#     print(f"message: {message}")
