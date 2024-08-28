@@ -34,18 +34,18 @@ else:
 
 def yx(ck):
     headers = {'qm-user-token': ck,'User-Agent': 'Mozilla/5.0 (Linux; Android 14; 2201122C Build/UKQ1.230917.001; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/116.0.0.0 Mobile Safari/537.36 XWEB/1160065 MMWEBSDK/20231202 MMWEBID/2247 MicroMessenger/8.0.47.2560(0x28002F30) WeChat/arm64 Weixin NetType/5G Language/zh_CN ABI/arm64 MiniProgramEnv/android','qm-from': 'wechat'}
-    dl = requests.get(url='https://webapi.qmai.cn/web/catering/crm/personal-info',headers=headers).json()
+    dl = requests.get(url='https://webapi2.qmai.cn/web/catering/crm/personal-info',headers=headers).json()
     if dl['message'] == 'ok':
         print(f"账号：{dl['data']['mobilePhone']}登录成功")
-        data = {"activityId":"947079313798000641","appid":"10086"}
-        lq = requests.post(url='https://webapi.qmai.cn/web/cmk-center/sign/takePartInSign',data=data,headers=headers).json()
+        data = {"activityId":"947079313798000641","appid":"wxafec6f8422cb357b"}
+        lq = requests.post(url='https://webapi2.qmai.cn/web/cmk-center/sign/takePartInSign',data=data,headers=headers).json()
         if lq['message'] == 'ok':
             print(f"签到情况：获得{lq['data']['rewardDetailList'][0]['rewardName']}：{lq['data']['rewardDetailList'][0]['sendNum']}")
         else:
             print(f"签到情况：{lq['message']}")
 def point(ck):
     headers = {'qm-user-token': ck,'User-Agent': 'Mozilla/5.0 (Linux; Android 14; 2201122C Build/UKQ1.230917.001; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/116.0.0.0 Mobile Safari/537.36 XWEB/1160065 MMWEBSDK/20231202 MMWEBID/2247 MicroMessenger/8.0.47.2560(0x28002F30) WeChat/arm64 Weixin NetType/5G Language/zh_CN ABI/arm64 MiniProgramEnv/android','qm-from': 'wechat'}
-    dl = requests.post(url='https://webapi.qmai.cn/web/catering/crm/points-info',headers=headers).json()
+    dl = requests.post(url='https://webapi2.qmai.cn/web/catering/crm/points-info',headers=headers).json()
     # print(f"账号：{dl}")
     if dl['message'] == 'ok':
         totalPoints=dl['data'] ['totalPoints'] 
