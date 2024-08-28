@@ -13,6 +13,9 @@ ql repo http://gh.tt.ma/https://github.com/zjk2017/ArcadiaScriptPublic.git "" ne
 访问统计
 ![img](https://profile-counter.glitch.me/zjk2017/count.svg)
 
+|   Application   |                                      Script name                                       |   Available   | Maintenance |
+|:---------------:|:--------------------------------------------------------------------------------------:|:-------------:|:-----------:|
+| 霸王茶姬 | [bwcj](https://github.com/zjk2017/ArcadiaScriptPublic/blob/main/bwcj.py) | ✅(2024/08/28) | ✅️ |
 
 版本镜像:
 
