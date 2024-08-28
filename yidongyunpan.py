@@ -12,6 +12,8 @@
 # 注: 本脚本仅用于个人学习和交流，请勿用于非法用途。作者不承担由于滥用此脚本所引起的任何责任，请在下载后24小时内删除。
 # new Env("移动云盘")
 # 作者: 洋洋不瘦
+# fix 20240828 ArcadiaScriptPublic  频道：https://t.me/ArcadiaScript 群组：https://t.me/ArcadiaScriptPublic
+# 抓包 第一个参数小程序orches.yun.139.com 或者aas.caiyun.feixin.10086.cn 搜Basic 全局搜也行  第三个参数app 域名caiyun.feixin.10086.cn或者签到链接https://caiyun.feixin.10086.cn:7071/market/signin/task/click?key=task&id=409的jwttoken
 import os
 import random
 import re
