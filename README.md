@@ -1,12 +1,13 @@
-青龙脚本库,目前库里都有效,有bug提isiues
+|  青龙脚本库,目前库里都有效,有bug 投稿 欢迎提isiues，|  
 
-频道
-https://t.me/ArcadiaScript
+|  频道
+https://t.me/ArcadiaScript|  
 
-群组
-https://t.me/ArcadiaScriptPublic
+|  群组
+https://t.me/ArcadiaScriptPublic|  
 
-ql repo http://gh.tt.ma/https://github.com/zjk2017/ArcadiaScriptPublic.git "" news|leaf|BackUp
+|  拉库（创建订阅时复制下方命令到第一个输入框就行，news、leaf、BackUp 、BackUpOld里面都是过期 没啥用 部分可以跑也没啥用的本）|  
+ql repo http://gh.301.ee/https://github.com/zjk2017/ArcadiaScriptPublic.git "" news|leaf|BackUp|BackUpOld
 
 
 
@@ -61,13 +62,30 @@ ql repo http://gh.tt.ma/https://github.com/zjk2017/ArcadiaScriptPublic.git "" ne
 | 44 | 艾克帮 | [艾克帮](https://github.com/zjk2017/ArcadiaScriptPublic/blob/main/aikebang/艾克帮.js) | ✅(2024/08/28) | ✅️ |
 | 45 | 贴吧 | [贴吧](https://github.com/zjk2017/ArcadiaScriptPublic/blob/main/tianyi/tieba.py) | ✅(2024/08/28) | ✅️ |
 | 46 | 天翼网盘 | [天翼网盘](https://github.com/zjk2017/ArcadiaScriptPublic/blob/main/tianyi/tianyiwanpan.py) | ✅(2024/08/28) | ✅️ |
+| 47 | 有赞劲牌商城 | [有赞劲牌商城](https://github.com/zjk2017/ArcadiaScriptPublic/blob/main/youzan/有赞劲牌商城.js) | ✅(2024/08/28) | ✅️ |
+| 48 | 有赞得宝Tempo | [有赞得宝Tempo](https://github.com/zjk2017/ArcadiaScriptPublic/blob/main/youzan/有赞得宝Tempo.js) | ✅(2024/08/28) | ✅️ |
+| 49 | 有赞通用 | [有赞通用](https://github.com/zjk2017/ArcadiaScriptPublic/blob/main/youzan/有赞通用.js) | ✅(2024/08/28) | ✅️ |
+| 50 | 有赞柚朵朵美妆 | [有赞柚朵朵美妆](https://github.com/zjk2017/ArcadiaScriptPublic/blob/main/youzan/有赞柚朵朵美妆.js) | ✅(2024/08/28) | ✅️ |
+| 51 | 有赞JDE咖啡 | [有赞JDE咖啡](https://github.com/zjk2017/ArcadiaScriptPublic/blob/main/youzan/有赞JDE咖啡.js) | ✅(2024/08/28) | ✅️ |
+| 52 | 有赞xbox | [有赞xbox](https://github.com/zjk2017/ArcadiaScriptPublic/blob/main/youzan/有赞xbox.js) | ✅(2024/08/28) | ✅️ |
+| 53 | 有赞松鲜鲜调味品 | [有赞松鲜鲜调味品](https://github.com/zjk2017/ArcadiaScriptPublic/blob/main/youzan/有赞松鲜鲜调味品.js) | ✅(2024/08/28) | ✅️ |
+| 54 | 有赞FicceCode菲诗蔻官方商城 | [有赞FicceCode菲诗蔻官方商城](https://github.com/zjk2017/ArcadiaScriptPublic/blob/main/youzan/有赞FicceCode菲诗蔻官方商城.js) | ✅(2024/08/28) | ✅️ |
+| 55 | 有赞蜜蜂惊喜社 | [有赞蜜蜂惊喜社](https://github.com/zjk2017/ArcadiaScriptPublic/blob/main/youzan/有赞蜜蜂惊喜社.js) | ✅(2024/08/28) | ✅️ |
+| 56 | 有赞七点五矿泉水 | [有赞七点五矿泉水](https://github.com/zjk2017/ArcadiaScriptPublic/blob/main/youzan/有赞七点五矿泉水.js) | ✅(2024/08/28) | ✅️ |
+| 57 | 有赞海天官方优选商城 | [有赞海天官方优选商城](https://github.com/zjk2017/ArcadiaScriptPublic/blob/main/youzan/有赞海天官方优选商城.js) | ✅(2024/08/28) | ✅️ |
+| 58 | 有赞蒙牛营养生活家 | [有赞蒙牛营养生活家](https://github.com/zjk2017/ArcadiaScriptPublic/blob/main/youzan/有赞蒙牛营养生活家.js) | ✅(2024/08/28) | ✅️ |
+| 59 | 有赞猛犸象1862 | [有赞猛犸象1862](https://github.com/zjk2017/ArcadiaScriptPublic/blob/main/youzan/有赞猛犸象1862.js) | ✅(2024/08/28) | ✅️ |
 
 版本镜像:
 
 正式版: whyour/qinglong:latest
+
 Python3.10 正式版: whyour/qinglong:python3.10
+
 debian 版: whyour/qinglong:debian
+
 Python3.10 debian 版: whyour/qinglong:debian-python3.10
+
 npm 版本: npm i -g @whyour/qinglong
 
 
