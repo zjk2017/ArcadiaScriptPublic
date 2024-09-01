@@ -1,10 +1,10 @@
 |  青龙脚本库,目前库里都有效,有bug 投稿 欢迎提isiues，|  
 
 |  频道
-https://t.me/ArcadiaScript|  
+https://t.me/ArcadiaScript
 
 |  群组
-https://t.me/ArcadiaScriptPublic|  
+https://t.me/ArcadiaScriptPublic
 
 |  拉库（创建订阅时复制下方命令到第一个输入框就行，news、leaf、BackUp 、BackUpOld里面都是过期 没啥用 部分可以跑也没啥用的本）|  
 ql repo http://gh.301.ee/https://github.com/zjk2017/ArcadiaScriptPublic.git "" news|leaf|BackUp|BackUpOld
