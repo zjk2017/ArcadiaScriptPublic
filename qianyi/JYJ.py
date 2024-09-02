@@ -829,7 +829,7 @@ export SCRIPT_UPDATE = 'False' 关闭脚本自动更新，默认开启
 ✨✨✨
 ''')
     local_script_name = os.path.basename(__file__)
-    local_version = '2024.06.03'
+    local_version = '2024.09.03'
     if IS_DEV:
         import_Tools()
     else:
