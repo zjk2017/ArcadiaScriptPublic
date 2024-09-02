@@ -2,13 +2,13 @@
 微信小程序:厚工坊微商城
 抓取的域名查看签到 api.hgf1862.com
 查看一条请求头里的Cookie
-比如 ASP.NET_SessionId=XXXXX; user=SessionID=hgfappmin.XXXXXX9.XXXXXX
+比如 user=SessionID=hgfappmin.XXXXXX9.XXXXXX
 变量
-hgf='ASP.NET_SessionId=XXXXX; user=SessionID=hgfappmin.XXXXXX9.XXXXXX' 抓取的Cookie
+hgf='user=SessionID=hgfappmin.XXXXXX9.XXXXXX' 切勿复制本例子，复制你实际抓的 抓取的Cookie
 多账户@隔开
 corn: 20 8 * * *
 
-fix 20240625 ArcadiaScriptPublic  频道：https://t.me/ArcadiaScript 群组：https://t.me/ArcadiaScriptPublic
+fix 20240901 ArcadiaScriptPublic  频道：https://t.me/ArcadiaScript 群组：https://t.me/ArcadiaScriptPublic
 增加打印签到信息
 */
 const $ = new Env('厚工坊');
