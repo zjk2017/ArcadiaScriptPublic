@@ -1,0 +1,20 @@
+{
+    "APP_CONFIG": {
+        "YDKD": {
+            "NEW_VERSION": "2024.05.15",
+            "APP_NAME": "韵达快递",
+            "NTC": "",
+            "ENABLE": true
+        },
+      
+        "JYJ": {
+            "NEW_VERSION": "2024.06.03",
+            "APP_NAME": "劲友家小程序",
+            "NTC": "",
+            "ENABLE": true
+        }
+    },
+    "GLOBAL_NTC_HTML": "\n<br>======= ArcadiaScriptPublic SCRIPTS =======<br>\n脚本免费使用，如果您是购买的，请申请退款并举报！！！<br>\n主发布地址：<a href='https://github.com/zjk2017/ArcadiaScriptPublic'>点击跳转</a><br>\nCHERWIN fork 维护发布地址：<a href='https://github.com/zjk2017/CHERWIN_SCRIPTS'>点击跳转</a><br>\n<br>\n<img style='width:150px;' src='https://pan.ziyuand.cn/dxxx/shang.png'></img><br>\n喜欢请打赏支持开发，谢谢！",
+    "GLOBAL_NTC": "\n======= ArcadiaScriptPublic SCRIPTS =======\n脚本免费使用，如果您是购买的，请申请退款并举报！！！\n发布地址1：https://github.com/zjk2017/ArcadiaScriptPublic\n \n发布地址2：https://github.com/zjk2017/CHERWIN_SCRIPTS\n \n喜欢请打赏支持开发，谢谢！",
+    "TOOLS_VERSION": "2024.08.30"
+}
