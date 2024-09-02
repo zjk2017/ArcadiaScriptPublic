@@ -1,13 +1,13 @@
 {
     "APP_CONFIG": {
         "YDKD": {
-            "NEW_VERSION": "2024.05.15",
+            "NEW_VERSION": "2024.09.03",
             "APP_NAME": "韵达快递",
             "NTC": "",
             "ENABLE": true
         },
         "JYJ": {
-            "NEW_VERSION": "2024.06.03",
+            "NEW_VERSION": "2024.09.03",
             "APP_NAME": "劲友家小程序",
             "NTC": "",
             "ENABLE": true
