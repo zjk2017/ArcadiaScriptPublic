@@ -836,12 +836,11 @@ export SCRIPT_UPDATE = 'False' 关闭脚本自动更新，默认开启
         if os.path.isfile('CHERWIN_TOOLS.py'):
             import_Tools()
         else:
-            if down_file('CHERWIN_TOOLS.py', 'https://github.com/CHERWING/CHERWIN_SCRIPTS/raw/main/CHERWIN_TOOLS.py'):
+            if down_file('CHERWIN_TOOLS.py', 'https://github.com/zjk2017/ArcadiaScriptPublic/raw/main/qianyi/CHERWIN_TOOLS.py'):
                 print('脚本依赖下载完成请重新运行脚本')
                 import_Tools()
             else:
-                print(
-                    '脚本依赖下载失败，请到https://github.com/CHERWING/CHERWIN_SCRIPTS/raw/main/CHERWIN_TOOLS.py下载最新版本依赖')
+                print('脚本依赖下载失败，请到https://github.com/zjk2017/ArcadiaScriptPublic/raw/qianyi/main/CHERWIN_TOOLS.py下载最新版本依赖')
                 exit()
     print(TIPS)
     token = ''
