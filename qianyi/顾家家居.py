@@ -681,7 +681,7 @@ if __name__ == '__main__':
     APP_NAME = '顾家家居小程序'
     ENV_NAME = 'GJJJ'
     CK_URL = 'https://mc.kukahome.com/club-server/member/automaticLogin'
-    CK_NAME = 'identityValue@openid@unionnid'
+    CK_NAME = 'identityValue@openid@unionnid@1@1@1'
     print(f'''
 ✨✨✨ {APP_NAME}签到✨✨✨
 ✨ 功能：
@@ -699,7 +699,10 @@ if __name__ == '__main__':
 ✨ 设置青龙变量：
 export {ENV_NAME}='{CK_NAME}参数值'多账号#或&分割
 export SCRIPT_UPDATE = 'False' 关闭脚本自动更新，默认开启
-✨ ✨ 注意：抓完CK没事儿别打开小程序，重新打开小程序请重新抓包
+✨ ✨ 注意：@1@1@1是固定的 写上就行了
+✨ ✨ 注意：@1@1@1是固定的 写上就行了
+✨ ✨ 注意：@1@1@1是固定的 写上就行了
+抓完CK没事儿别打开小程序，重新打开小程序请重新抓包
 ✨ 推荐cron：1 9 * * *
 ✨✨✨ @Author CHERWIN✨✨✨
 ''')
@@ -711,11 +714,11 @@ export SCRIPT_UPDATE = 'False' 关闭脚本自动更新，默认开启
         if os.path.isfile('CHERWIN_TOOLS.py'):
             import_Tools()
         else:
-            if down_file('CHERWIN_TOOLS.py', 'https://github.com/CHERWING/CHERWIN_SCRIPTS/raw/main/CHERWIN_TOOLS.py'):
+            if down_file('CHERWIN_TOOLS.py', 'https://github.com/zjk2017/ArcadiaScriptPublic/raw/main/qianyi/CHERWIN_TOOLS.py'):
                 print('脚本依赖下载完成请重新运行脚本')
                 import_Tools()
             else:
-                print('脚本依赖下载失败，请到https://github.com/CHERWING/CHERWIN_SCRIPTS/raw/main/CHERWIN_TOOLS.py下载最新版本依赖')
+                print('脚本依赖下载失败，请到https://github.com/zjk2017/ArcadiaScriptPublic/raw/qianyi/main/CHERWIN_TOOLS.py下载最新版本依赖')
                 exit()
     print(TIPS)
     token = ''
