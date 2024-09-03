@@ -11,7 +11,7 @@
  */
 import { Env } from './utils';
 
-const $ = new Env('同花顺签到1');
+const $ = new Env('同花顺签到2');
 
 /** 签到 */
 export async function signCheckIn(cookie: string) {
