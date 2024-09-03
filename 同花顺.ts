@@ -8,7 +8,6 @@
  cron: 55 8 * * *
  环境变量： ths_cookie 抓包 https://eq.10jqka.com.cn 请求 header 里面的 cookie。多账号用 & 或换行分割
   示例：export ths_cookie=""
-  new Env('同花顺签到');
  */
 import { Env } from './utils';
 
