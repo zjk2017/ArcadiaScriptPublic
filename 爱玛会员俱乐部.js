@@ -88,7 +88,7 @@ async function signInSearch() {
     };
     let { data: result } = await Request(config)
     if (result.code == 200) {
-        if (result.content.signed !== 1) {
+        if (result.content.signStatus !== 1) {
             $.log(`未签到 ===> 签到ing`)
             await signInJoin()
         } else {
