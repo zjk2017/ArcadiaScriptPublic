@@ -20,10 +20,10 @@ async function main() {
     console.log('作者：@xzxxn777\n频道：https://t.me/xzxxn777\n群组：https://t.me/xzxxn7777\n自用机场推荐：https://xn--diqv0fut7b.com\n')
     accountId = Cheryfs[Cheryfs_Acc].accountId;
     console.log(`用户：${accountId}开始兑换`)
-    let queryPointsMallCardList = await commonGet('/pointsmall/queryPointsMallCardList?isGroup=false')
-    for (const item of queryPointsMallCardList.result['全部']) {
-        console.log('兑换商品：' + item.cardName + 'id:' + item.id + ' 兑换所需积分：' + item.exchangePointsValue + ' 兑换所需金额：' + item.exchangeMoneyValue)
-    }
+    // let queryPointsMallCardList = await commonGet('/pointsmall/queryPointsMallCardList?isGroup=false')
+    // for (const item of queryPointsMallCardList.result['全部']) {
+    //     console.log('兑换商品：' + item.cardName + 'id:' + item.id + ' 兑换所需积分：' + item.exchangePointsValue + ' 兑换所需金额：' + item.exchangeMoneyValue)
+    // }
     let pointsMallCardId = Cheryfs_GIFTID;
     let queryByPointsMallCardId = await commonGet(`/pointsmall/queryByPointsMallCardId?pointsMallCardId=${pointsMallCardId}`)
     console.log(`开始兑换${queryByPointsMallCardId.result.cardName}`)
