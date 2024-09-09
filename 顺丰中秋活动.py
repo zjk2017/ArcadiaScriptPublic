@@ -1470,6 +1470,7 @@ class RUN:
                 if PUSH_TIMES_balance > 0:
                     for i in range(PUSH_TIMES_balance):
                         print(f'>> 开始第【{PUSH_TIMES_balance + 1}】次推币')
+                        time.sleep(3)
                         self.MIDAUTUMN_2024_pushCoin()
                         PUSH_TIMES -= 1
                         pushedTimesToday += 1
