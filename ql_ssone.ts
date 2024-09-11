@@ -11,7 +11,7 @@
   示例：process.env.SSONE=邮箱1#密码1&邮箱2#密码2#HOST
   或：process.env.SSONE=cookie1&cookie2
  */
-import { Env } from './utils';
+import { Env } from './utils_1';
 
 const $ = new Env('ssone机场签到');
 
