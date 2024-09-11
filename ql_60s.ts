@@ -15,7 +15,7 @@
  详情参考： https://github.com/lzwme/60s-php
  */
 
-import { sendNotify } from './utils';
+import { sendNotify } from './utils_1';
 
 const ALL_TYPE = {
   '60s': '60s读懂世界',
