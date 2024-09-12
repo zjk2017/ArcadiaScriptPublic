@@ -23,6 +23,7 @@ let notice = ''
 })().catch((e) => {$.log(e)}).finally(() => {$.done({});});
 
 async function main() {
+    console.log('入口 #小程序://旧衣回收/QbbGNwrYJw19GVi')
     console.log('作者：ArcadiaScriptPublic  频道：https://t.me/ArcadiaScript 群组：https://t.me/ArcadiaScriptPublic  仓库:https://github.com/zjk2017/ArcadiaScriptPublic')
     for (const item of manniao) {
         id = item.id;
