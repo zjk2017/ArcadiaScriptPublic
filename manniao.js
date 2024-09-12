@@ -3,8 +3,9 @@
  * export manniao='[{"id":"1","uuid":"备用变量","token":"1","userToken":"备用变量"},{"id":"2","uuid":"2","token":"2","userToken":"2"}]'
  * 支持青龙
  * 模版改的将就用吧
+ * 入口 #小程序://旧衣回收/QbbGNwrYJw19GVi
  */
-const $ = new Env('漫鸟旧衣服上门回收小程序')
+const $ = new Env('manniao')
 const manniao = ($.isNode() ? JSON.parse(process.env.manniao) : $.getjson("manniao")) || [];
 let shareCodeArr = []
 let token = ''
