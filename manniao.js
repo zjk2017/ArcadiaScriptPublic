@@ -1,9 +1,10 @@
 /**
  * cron: 53 7 * * *
- * export manniao='[{"id":"1","uuid":"备用变量","token":"1","userToken":"备用变量"},{"id":"2","uuid":"2","token":"2","userToken":"2"}]'
+ * export manniao='[{"id":"1","mini_scene":"1","token":"1","appid":"备用变量"},{"id":"2","mini_scene":"2","token":"2","appid":"2"}]'
  * 支持青龙
  * 模版改的将就用吧
  * 入口 #小程序://旧衣回收/QbbGNwrYJw19GVi
+ * 捕获非json
  */
 const $ = new Env('manniao')
 const manniao = ($.isNode() ? JSON.parse(process.env.manniao) : $.getjson("manniao")) || [];
@@ -11,7 +12,7 @@ let shareCodeArr = []
 let token = ''
 let userToken = ''
 let hadayToken = ''
-let uuid = ''
+let mini_scene = ''
 let notice = ''
 !(async () => {
     if (typeof $request != "undefined") {
@@ -28,9 +29,9 @@ async function main() {
     for (const item of manniao) {
         id = item.id;
         token = item.token;
-        userToken = item.userToken;
-        uuid = item.uuid;
-        let toSignInfo = await commonGet('/get/template/id?scene=SIGN_IN&platformKey=wxa587f7c3393d3d2f&mini_scene=1005')
+        mini_scene = item.mini_scene;
+        let toSignInfo = await commonPost(`/active/sign-in/do`,{"platformKey":"wxa587f7c3393d3d2f","mini_scene":mini_scene,"fmy_v":"1.0.00"})
+
         console.log(`签到响应: ${JSON.stringify(toSignInfo)}\n`)
         // if (activityInfo.code == 403) {
         //     console.log('token已过期,开始刷新')
@@ -58,7 +59,7 @@ async function main() {
     for (const item of manniao) {
         id = item.id;
         console.log("查询积分")
-        let points = await commonGet('/user/paid/base/info?platformKey=wxa587f7c3393d3d2f&mini_scene=1005')
+        let points = await commonGet(`/user/paid/base/info?platformKey=wxa587f7c3393d3d2f&mini_scene=${mini_scene}`)
         let direct_balance=points.data.direct_balance
         // console.log(`查询积分响应: ${JSON.stringify(points)}\n`)
 
@@ -127,9 +128,14 @@ async function commonGet(url) {
                     }
                 } else {
                     await $.wait(2000)
-                    if(data) {
-                        //  console.log(`data ${data} `)
-                        data = JSON.parse(data)
+                    if (data) {
+                        try {
+                            data = JSON.parse(data);
+                            // console.log(`data ${JSON.stringify(data)}`);
+                        } catch (e) {
+                            // console.error('Error parsing JSON!', e);
+                            console.error('非JSON!');
+                        }
                     }
                     resolve(data);
                 }
@@ -146,23 +152,15 @@ async function commonGet(url) {
 async function commonPost(url, body) {
     return new Promise(resolve => {
         const options = {
-            url: `https://lmf.lvmifo.com${url}`,
+           url: `https://openapp.fmy90.com${url}`,
             headers : {
-              
-                "Host": "lmf.lvmifo.com",
+                "Host": "openapp.fmy90.com",
                 "Connection": "keep-alive",
-                "this-shop-id": "0",
-                "content-type": "application/x-www-form-urlencoded",
-                "access-token": token,
-                "version": "v1.0.0",
-                "user-token": userToken,
-                "lat": "",
-                "lng": "",
+                "content-type": "application/json",
+                "Authorization": token,
                 "Accept-Encoding": "gzip,compress,br,deflate",
                 "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 17_6_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/8.0.49(0x18003137) NetType/WIFI Language/zh_CN",
-                "Referer": "https://servicewechat.com/wx6fcde446296d9588/226/page-frame.html"
-
-
+                "Referer": "https://servicewechat.com/wxa587f7c3393d3d2f/3/page-frame.html"
             },
             body: JSON.stringify(body)
         }
