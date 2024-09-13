@@ -1,7 +1,7 @@
 /**
  * cron: 53 7 * * *
  * export manniao='[{"id":"1","mini_scene":"1","token":"1","appid":"备用变量"},{"id":"2","mini_scene":"2","token":"2","appid":"2"}]'
- * 支持青龙
+ * 支持青龙 mini_scene填1089 不知道会不会变
  * 模版改的将就用吧
  * 入口 #小程序://旧衣回收/QbbGNwrYJw19GVi
  * 捕获非json
