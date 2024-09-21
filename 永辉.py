@@ -1,7 +1,7 @@
 ''' 
 new Env('永辉生活');
-抓任意域名的deviceid和access_token(有bug及时反馈)
-果园任务七点之后才刷新
+抓任意域名的deviceid和access_token(有bug及时反馈)  &分割 多账号@
+果园任务七点之后才刷新 
 2.11 4:35(修复浇水任务完整执行跳过)
 cron: 12 8 * * *
 fix 20240625 ArcadiaScriptPublic  频道：https://t.me/ArcadiaScript 群组：https://t.me/ArcadiaScriptPublic
