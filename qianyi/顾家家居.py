@@ -4,7 +4,7 @@
 # ✨✨✨ @Author CHERWIN✨✨✨  每周三会员日的游戏不一样自己做
 # -------------------------------
 # cron: 51 9 * * *
-# new Env('顾家家居24')
+# new Env('顾家家居0926修复版')
 import os
 import random
 import time
@@ -149,8 +149,8 @@ class RUN:
             point = membership.get('point', '')
             # systemSource = membership.get('systemSource', '')
             self.membershipId = membership.get('id', '')
-            self.brandCode = membership.get('brandCode', '')
-            self.mobile = membership.get('mobile', '')
+            self.brandCode = 'K001'
+            self.mobile = membership.get('phone', '')
             oneId = membership.get('oneId', '')
             memberLevel = membership.get('memberLevel', '')
             new_headers={
@@ -161,7 +161,7 @@ class RUN:
             self.headers.update(new_headers)
             Log(f'>手机号：【{self.mobile}】')
             print(f'>ID：【{self.membershipId}】')
-            print(f'>等级：【{memberLevel}】')
+            print(f'>看到此处AccessToken没有打印需要进一下小程序随便点几下再来跑，有值才正常：【{AccessToken}】')
             print(f'>oneId：【{oneId}】')
             Log(f'>当前积分：【{point}】')
 
@@ -707,7 +707,7 @@ export SCRIPT_UPDATE = 'False' 关闭脚本自动更新，默认开启
 ✨✨✨ @Author CHERWIN✨✨✨
 ''')
     local_script_name = os.path.basename(__file__)
-    local_version = '2024.09.03'
+    local_version = '2024.09.26'
     if IS_DEV:
         import_Tools()
     else:
