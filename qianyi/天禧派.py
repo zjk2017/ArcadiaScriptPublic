@@ -147,8 +147,8 @@ class RUN:
             point = membership.get('point', '')
             # systemSource = membership.get('systemSource', '')
             self.membershipId = membership.get('id', '')
-            self.brandCode = membership.get('brandCode', '')
-            self.mobile = membership.get('mobile', '')
+            self.brandCode = 'K006'
+            self.mobile = membership.get('phone', '')
             oneId = membership.get('oneId', '')
             memberLevel = membership.get('memberLevel', '')
             new_headers={
@@ -159,7 +159,7 @@ class RUN:
             self.headers.update(new_headers)
             Log(f'>手机号：【{self.mobile}】')
             print(f'>ID：【{self.membershipId}】')
-            print(f'>等级：【{memberLevel}】')
+            print(f'>AccessToken：【{AccessToken}】')
             print(f'>oneId：【{oneId}】')
             Log(f'>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>当前积分：【{point}】')
 
