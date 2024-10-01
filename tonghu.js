@@ -1,6 +1,6 @@
 /**
  * cron: 53 7 * * *
- * export tonghu='[{"id":"1","mini_scene":"1","token":"1","userToken":"备用变量"},{"id":"2","mini_scene":"2","token":"2","userToken":"2"}]'
+ * export tonghu='[{"id":"1","mini_scene":"1","token":"1"},{"id":"2","mini_scene":"2","token":"2"}]'
  * 
  * 支持青龙
  * 模版改的将就用吧
@@ -13,7 +13,6 @@ let shareCodeArr = []
 let token = ''
 let cname = 'tonghu.aiguo.tech'
 let baseurl = "https://"+cname
-let userToken = ''
 let hadayToken = ''
 let mini_scene = ''
 let notice = ''
@@ -32,32 +31,9 @@ async function main() {
     for (const item of tonghu) {
         id = item.id;
         token = item.token;
-        userToken = item.userToken;
         mini_scene = item.mini_scene;
         let toSignInfo = await commonGet(`/fuli/api/fuli/signed`)
         console.log(`签到响应: ${JSON.stringify(toSignInfo)}\n`)
-        // if (activityInfo.code == 403) {
-        //     console.log('token已过期,开始刷新')
-        //     let refresh = await helpPost(`/passport/token`, `refresh_token=${refreshToken}`)
-        //     if (refresh.accessToken) {
-        //         token = refresh.accessToken;
-        //         refreshToken = refresh.refreshToken;
-        //         console.log('刷新成功')
-        //         const newData = {"id": id, "uuid": uuid, "token": token, "refreshToken":refreshToken};
-        //         const index = HaiTian.findIndex(e => e.id == id);
-        //         if (index !== -1) {
-        //             HaiTian[index] = newData;
-        //         }
-        //         $.setjson(HaiTian, "HaiTian");
-        //     } else {
-        //         console.log('刷新失败')
-        //         await sendMsg(`用户：${id}\ntoken已过期，请重新获取`);
-        //         continue
-        //     }
-        // }
-        // let shareCode = await commonGet(`/lucky/task/share/code/${activityId}`)
-        // console.log(`助力码：${shareCode.share_code}`)
-        // shareCodeArr.push(shareCode.share_code)
     }
     for (const item of tonghu) {
         id = item.id;
@@ -65,10 +41,8 @@ async function main() {
         let points = await commonPost(`/fuli/api/jf/account`,{})
         let direct_balance=points.data
         // console.log(`查询积分响应: ${JSON.stringify(points)}\n`)
-
         console.log(`用户：${id} 拥有积分: ${direct_balance}\n`)
         notice += `用户：${id} 拥有积分: ${direct_balance}\n`
-
     }
     if (notice) {
         await sendMsg(notice);
@@ -179,134 +153,6 @@ async function commonPost(url, body) {
                         console.log(`${JSON.stringify(err)}`)
                         console.log(`${$.name} API请求失败，请检查网路重试`)
                     }
-                } else {
-                    await $.wait(2000)
-                    resolve(JSON.parse(data));
-                }
-            } catch (e) {
-                $.logErr(e, resp)
-            } finally {
-                resolve();
-            }
-        })
-    })
-}
-
-async function commnityPost(url, body) {
-    return new Promise(resolve => {
-        const options = {
-            url: `https://cmallapi.haday.cn/buyer-api${url}`,
-            headers : {
-                'Connection': 'keep-alive',
-                'authorization': token,
-                'uuid': uuid,
-                'content-type': 'application/json',
-                'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 MicroMessenger/6.8.0(0x16080000) NetType/WIFI MiniProgramEnv/Mac MacWechat/WMPF MacWechat/3.8.8(0x13080812) XWEB/1216',
-                'envVersion': 'release',
-                'accept': '*/*',
-                'Sec-Fetch-Site': 'cross-site',
-                'Sec-Fetch-Mode': 'cors',
-                'Sec-Fetch-Dest': 'empty',
-                'Referer': 'https://servicewechat.com/wx7a890ea13f50d7b6/597/page-frame.html',
-                'Accept-Encoding': 'gzip, deflate, br',
-                'Accept-Language': 'zh-CN,zh;q=0.9'
-            },
-            body: JSON.stringify(body)
-        }
-        $.post(options, async (err, resp, data) => {
-            try {
-                if (err) {
-                    if (data) {
-                        await $.wait(2000)
-                        resolve(data);
-                    } else {
-                        console.log(`${JSON.stringify(err)}`)
-                        console.log(`${$.name} API请求失败，请检查网路重试`)
-                    }
-                } else {
-                    await $.wait(2000)
-                    resolve(data);
-                }
-            } catch (e) {
-                $.logErr(e, resp)
-            } finally {
-                resolve();
-            }
-        })
-    })
-}
-
-async function commonPut(url, body) {
-    return new Promise(resolve => {
-        const options = {
-            method: 'PUT',
-            url: `https://cmallapi.haday.cn/buyer-api${url}`,
-            headers : {
-                'Connection': 'keep-alive',
-                'authorization': token,
-                'uuid': uuid,
-                'content-type': 'application/json',
-                'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 MicroMessenger/6.8.0(0x16080000) NetType/WIFI MiniProgramEnv/Mac MacWechat/WMPF MacWechat/3.8.8(0x13080812) XWEB/1216',
-                'envVersion': 'release',
-                'accept': '*/*',
-                'Sec-Fetch-Site': 'cross-site',
-                'Sec-Fetch-Mode': 'cors',
-                'Sec-Fetch-Dest': 'empty',
-                'Referer': 'https://servicewechat.com/wx7a890ea13f50d7b6/597/page-frame.html',
-                'Accept-Encoding': 'gzip, deflate, br',
-                'Accept-Language': 'zh-CN,zh;q=0.9'
-            },
-            body: JSON.stringify(body)
-        }
-        $.post(options, async (err, resp, data) => {
-            try {
-                if (err) {
-                    if (data) {
-                        await $.wait(2000)
-                        resolve(JSON.parse(data));
-                    } else {
-                        console.log(`${JSON.stringify(err)}`)
-                        console.log(`${$.name} API请求失败，请检查网路重试`)
-                    }
-                } else {
-                    await $.wait(2000)
-                    resolve(data);
-                }
-            } catch (e) {
-                $.logErr(e, resp)
-            } finally {
-                resolve();
-            }
-        })
-    })
-}
-
-async function cmallwapPost(url, body) {
-    return new Promise(resolve => {
-        const options = {
-            url: `https://cmallwap.haday.cn${url}`,
-            headers : {
-                'Connection': 'keep-alive',
-                'X-Haday-Token': hadayToken,
-                'uuid': uuid,
-                'content-type': 'application/json',
-                'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 MicroMessenger/6.8.0(0x16080000) NetType/WIFI MiniProgramEnv/Mac MacWechat/WMPF MacWechat/3.8.8(0x13080812) XWEB/1216',
-                'envVersion': 'release',
-                'accept': '*/*',
-                'Sec-Fetch-Site': 'cross-site',
-                'Sec-Fetch-Mode': 'cors',
-                'Sec-Fetch-Dest': 'empty',
-                'Referer': 'https://servicewechat.com/wx7a890ea13f50d7b6/597/page-frame.html',
-                'Accept-Encoding': 'gzip, deflate, br',
-                'Accept-Language': 'zh-CN,zh;q=0.9'
-            },
-            body: JSON.stringify(body)
-        }
-        $.post(options, async (err, resp, data) => {
-            try {
-                if (err) {
-                    console.log(`${JSON.stringify(err)}`)
-                    console.log(`${$.name} API请求失败，请检查网路重试`)
                 } else {
                     await $.wait(2000)
                     resolve(JSON.parse(data));
