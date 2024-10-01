@@ -1,6 +1,6 @@
 /**
  * cron: 53 7 * * *
- * export tonghu='[{"id":"1","mini_scene":"1","token":"1"},{"id":"2","mini_scene":"2","token":"2"}]'
+ * export tonghu='[{"id":"1","token":"1"},{"id":"2","token":"2"}]'
  * 
  * 支持青龙
  * 模版改的将就用吧
@@ -9,12 +9,9 @@
  */
 const $ = new Env('tonghu')
 const tonghu = ($.isNode() ? JSON.parse(process.env.tonghu) : $.getjson("tonghu")) || [];
-let shareCodeArr = []
 let token = ''
 let cname = 'tonghu.aiguo.tech'
 let baseurl = "https://"+cname
-let hadayToken = ''
-let mini_scene = ''
 let notice = ''
 !(async () => {
     if (typeof $request != "undefined") {
@@ -31,7 +28,6 @@ async function main() {
     for (const item of tonghu) {
         id = item.id;
         token = item.token;
-        mini_scene = item.mini_scene;
         let toSignInfo = await commonGet(`/fuli/api/fuli/signed`)
         console.log(`签到响应: ${JSON.stringify(toSignInfo)}\n`)
     }
