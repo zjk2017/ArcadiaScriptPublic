@@ -3,13 +3,13 @@
  * cron: 59 17 * * *
  * export Cheryfs='[{"accountId":"1"},{"accountId":"2"}]'
  * export Cheryfs_Acc="0"//兑换第一个账号
- * export Cheryfs_GIFTID="754492665391370240"//运行脚本查看
+ * export Cheryfs_GIFTID="850529542367801344"//运行脚本查看
  * export Cheryfs_MUM=100 抢兑次数 不填就是100
  */
 const $ = new Env('好奇车生活兑换')
 const Cheryfs = ($.isNode() ? JSON.parse(process.env.Cheryfs) : $.getjson("Cheryfs")) || [];
 let Cheryfs_Acc = ($.isNode() ? process.env.Cheryfs_Acc : $.getdata("Cheryfs_Acc")) || 0;
-let Cheryfs_GIFTID = ($.isNode() ? process.env.Cheryfs_GIFTID : $.getdata("Cheryfs_GIFTID")) || '754492665391370240';
+let Cheryfs_GIFTID = ($.isNode() ? process.env.Cheryfs_GIFTID : $.getdata("Cheryfs_GIFTID")) || '850529542367801344';
 let Cheryfs_MUM = ($.isNode() ? process.env.Cheryfs_MUM : $.getdata("Cheryfs_MUM")) || 100;
 let accountId = ''
 !(async () => {
@@ -17,7 +17,7 @@ let accountId = ''
 })().catch((e) => {$.log(e)}).finally(() => {$.done({});});
 
 async function main() {
-    console.log('作者：@xzxxn777\n频道：https://t.me/xzxxn777\n群组：https://t.me/xzxxn7777\n自用机场推荐：https://xn--diqv0fut7b.com\n')
+    // console.log('作者：@xzxxn777\n频道：https://t.me/xzxxn777\n群组：https://t.me/xzxxn7777\n自用机场推荐：https://xn--diqv0fut7b.com\n')
     accountId = Cheryfs[Cheryfs_Acc].accountId;
     console.log(`用户：${accountId}开始兑换`)
     // let queryPointsMallCardList = await commonGet('/pointsmall/queryPointsMallCardList?isGroup=false')
