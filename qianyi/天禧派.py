@@ -1,11 +1,11 @@
 # !/usr/bin/python3
 # -- coding: utf-8 --
 # -------------------------------
-# ✨✨✨ @Author ArcadiaScriptPublic 20240903 ✨✨✨
+# ✨✨✨ @Author ArcadiaScriptPublic 20241001 ✨✨✨
 # -------------------------------
 # cron: 51 9 * * *
 # export txp='token'&version  多账号用 换行 或 @ 分割
-# new Env('天禧派27')
+# new Env('天禧派')
 import os
 import random
 import time
@@ -165,7 +165,7 @@ class RUN:
 
             return True
         else:
-            Log(f'>可能token失效了❌,{response}')
+            Log(f'>可能token失效了(看到上面AccessToken没有打印值，需要进一下小程序随便点几下再来跑，有值才正常)❌,{response}')
             return False
     def personal(self):
         Log('======= 查询用户信息 =======')
