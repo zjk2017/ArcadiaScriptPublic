@@ -167,7 +167,7 @@ class RUN:
 
             return True
         else:
-            Log(f'>可能token失效了❌,{response}')
+            Log(f'>可能token失效了(看到上面AccessToken没有打印值，需要进一下小程序随便点几下再来跑，有值才正常)❌,{response}')
             return False
     def personal(self):
         Log('======= 查询用户信息 =======')
