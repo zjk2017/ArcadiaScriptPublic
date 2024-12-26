@@ -1,8 +1,10 @@
 /**
  * 青碳行
  * cron: 9 5 * * *
- *  fix 20240623 原作者smallfawn 增加分享功能 实物可以搞
- * ========= 青龙--配置文件 ===========
+ *  fix 20240623 原作者smallfawn 增加分享功能 
+ *20241226 修复bug 
+ 可以换实物可以做地铁有优惠
+ ========= 青龙--配置文件 ===========
  * # 项目名称
  * export qtxtk='token&deviceCoding'
  * 
@@ -25,6 +27,9 @@ let userCookie = ($.isNode() ? process.env[ckName] : $.getdata(ckName)) || '';
 let userList = [];
 let userIdx = 0;
 let userCount = 0;
+
+//let date = new Date();
+
 //---------------------- 自定义变量区域 -----------------------------------
 //---------------------------------------------------------
 
@@ -97,7 +102,17 @@ class UserInfo {
         }
 
 
+this.headersv2 = {
+            'Content-Type': 'application/json; charset=utf-8',
+            'Host': 'carbon.lcago.cn',
+            'channel': 'qtx',
+            'Connection': 'Keep-Alive',
+            'token':this.ck,
 
+  
+            //'Accept-Encoding': 'gzip',
+            'User-Agent': 'okhttp/3.12.'
+        }
     }
 
     getRandomTime() {
@@ -158,13 +173,22 @@ async walk() {
    
   
 }
-    async task_signIn() {//userinfo
-        try {
-            let options = {
-                url: `https://carbon.lcago.cn/signIn/sign`,
-                headers: this.headers,
-                body: `{"token":"${this.ck}","platform":"android","model":"MI8","appChannel":"qtx","version":"1.3.3_VersionCode_111","deviceCoding":"${this.deviceCoding}","language":"ZH","systemversion":"10"}`
+ getFormattedDate() {
+    const sillyDatetime = require('silly-datetime');
+    const date = sillyDatetime.format(new Date(), 'YYYY-MM-DD');
+    return date;
+}
 
+// 调用函数获取日期并输出
+
+//#console.log(today);
+    async task_signIn() {
+        try {
+          const today = this.getFormattedDate();
+            let options = {
+                url: `https://carbon.lcago.cn/signIn/v2/sign`,
+                headers: this.headersv2,
+                body: `{"signType":0,"signDate":"${today}"}`
             }
             //console.log(options);
             let result = await httpRequest(options);
